@@ -6,11 +6,13 @@ import { Badge } from '@/components/ui/badge';
 import { createPageUrl } from '@/utils';
 import { ShoppingCart, Eye } from 'lucide-react';
 import { useCart } from '../cart/CartContext';
+import EditableProduct from '../admin/EditableProduct';
 
 export default function ProductCard({ product }) {
   const { addToCart } = useCart();
 
   return (
+    <EditableProduct product={product} className="h-full">
     <Card className="h-full flex flex-col group overflow-hidden transition-all hover:shadow-lg border-slate-200">
       <div className="relative aspect-square overflow-hidden bg-white p-4">
         {product.images?.[0] ? (
