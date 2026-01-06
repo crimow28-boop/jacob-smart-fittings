@@ -49,13 +49,14 @@ export default function SiteSettingsDialog({ open, onOpenChange }) {
         return await base44.entities.SiteContent.create(data);
       }
     },
-    onSuccess: () => {
-      queryClient.invalidateQueries(['site-content']);
-      queryClient.invalidateQueries(['site-content-settings']);
+    onSuccess: async () => {
+      await Promise.all([
+        queryClient.invalidateQueries({ queryKey: ['site-content'] }),
+        queryClient.invalidateQueries({ queryKey: ['site-content-settings'] }),
+        queryClient.invalidateQueries({ queryKey: ['site-content-layout'] })
+      ]);
       toast.success('הגדרות האתר עודכנו בהצלחה');
       onOpenChange(false);
-      // Force reload to apply styles if needed, or rely on Layout re-render
-      window.location.reload(); 
     },
     onError: () => {
       toast.error('שגיאה בעדכון ההגדרות');
