@@ -57,7 +57,7 @@ export default function Category() {
 
   return (
     <div className="min-h-screen bg-slate-50 py-8">
-      <div className="container px-4 md:px-6">
+      <div className="container mx-auto px-4 md:px-6">
         <div className="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
           <h1 className="text-3xl font-bold text-slate-900">קטלוג מוצרים</h1>
           
