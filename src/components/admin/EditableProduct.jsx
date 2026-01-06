@@ -1,17 +1,39 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useAdmin } from './AdminContext';
+import { Edit } from 'lucide-react';
+import ProductEditorDialog from './ProductEditorDialog';
+import { Button } from '@/components/ui/button';
 
 export default function EditableProduct({ product, children }) {
   const { isEditMode } = useAdmin();
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   if (!isEditMode) return children;
 
   return (
-    <div className="relative group border-2 border-dashed border-transparent hover:border-blue-500 rounded-lg transition-all">
-       {children}
-       <div className="absolute top-0 right-0 bg-blue-600 text-white text-xs px-2 py-1 rounded-bl opacity-50 group-hover:opacity-100 pointer-events-none z-10">
-         Editable
-       </div>
-    </div>
+    <>
+      <div className="relative group border-2 border-dashed border-blue-400/30 hover:border-blue-500 rounded-lg transition-all p-1">
+         {children}
+         <Button 
+           size="icon"
+           className="absolute top-2 right-2 h-8 w-8 bg-blue-600 hover:bg-blue-700 text-white shadow-lg opacity-0 group-hover:opacity-100 transition-opacity z-20"
+           onClick={(e) => {
+             e.preventDefault();
+             e.stopPropagation();
+             setIsDialogOpen(true);
+           }}
+         >
+           <Edit className="w-4 h-4" />
+         </Button>
+      </div>
+      
+      {isDialogOpen && (
+        <ProductEditorDialog 
+          open={isDialogOpen} 
+          onOpenChange={setIsDialogOpen}
+          product={product}
+        />
+      )}
+    </>
   );
 }
