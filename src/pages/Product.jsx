@@ -27,7 +27,7 @@ import ProductGallery from '../components/products/ProductGallery';
 import EditableProduct from '../components/admin/EditableProduct';
 import { useAdmin } from '../components/admin/AdminContext';
 
-const WHATSAPP_NUMBER = '15551234567';
+const WHATSAPP_NUMBER = '972547391001';
 
 export default function Product() {
   const urlParams = new URLSearchParams(window.location.search);

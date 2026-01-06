@@ -31,7 +31,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <h3 className="font-bold text-lg mb-1">טלפון</h3>
-                    <p className="text-slate-600">050-1234567</p>
+                    <p className="text-slate-600">054-7391001</p>
                     <p className="text-sm text-slate-500 mt-1">א'-ה': 09:00-18:00</p>
                   </div>
                 </CardContent>
