@@ -69,5 +69,6 @@ export default function ProductCard({ product }) {
         )}
       </CardFooter>
     </Card>
+    </EditableProduct>
   );
 }
