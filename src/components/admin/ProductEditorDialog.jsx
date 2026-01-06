@@ -138,7 +138,7 @@ export default function ProductEditorDialog({ open, onOpenChange, product }) {
             {/* Images */}
             <div className="space-y-2">
                <Label>תמונות</Label>
-               <div className="grid grid-cols-4 gap-4 mb-4">
+               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-4">
                  {formData.images.map((url, index) => (
                    <div key={index} className="relative group aspect-square bg-slate-100 rounded-lg overflow-hidden border border-slate-200">
                      <img src={url} alt="" className="w-full h-full object-cover" />
