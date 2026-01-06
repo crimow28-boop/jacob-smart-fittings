@@ -295,10 +295,10 @@ export default function Product() {
             <div className="mt-8 pt-8 border-t border-slate-200">
               <div className="grid grid-cols-2 gap-4">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center">
-                    <Truck className="w-5 h-5 text-slate-600" />
+                  <div className="w-8 h-8 lg:w-10 lg:h-10 bg-slate-100 rounded-full flex items-center justify-center flex-shrink-0">
+                    <Truck className="w-4 h-4 lg:w-5 lg:h-5 text-slate-600" />
                   </div>
-                  <div className="text-sm">
+                  <div className="text-xs lg:text-sm">
                     <div className="font-medium text-slate-800">משלוח מהיר</div>
                     <div className="text-slate-500">תוך 48 שעות</div>
                   </div>
