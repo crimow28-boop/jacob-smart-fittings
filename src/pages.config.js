@@ -1,17 +1,17 @@
-import Product from './pages/Product';
-import Home from './pages/Home';
+import About from './pages/About';
 import Category from './pages/Category';
 import Contact from './pages/Contact';
-import About from './pages/About';
+import Home from './pages/Home';
+import Product from './pages/Product';
 import __Layout from './Layout.jsx';
 
 
 export const PAGES = {
-    "Product": Product,
-    "Home": Home,
+    "About": About,
     "Category": Category,
     "Contact": Contact,
-    "About": About,
+    "Home": Home,
+    "Product": Product,
 }
 
 export const pagesConfig = {

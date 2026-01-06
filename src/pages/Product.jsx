@@ -147,7 +147,7 @@ export default function Product() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 lg:py-12">
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
           {/* Gallery */}
-          <div className="space-y-4">
+          <div className="space-y-4 min-w-0">
             <EditableProduct product={product}>
               <ProductGallery key={product.id} images={product.images} />
             </EditableProduct>
