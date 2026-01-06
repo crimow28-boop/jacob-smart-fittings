@@ -3,8 +3,9 @@ import { useAdmin } from './AdminContext';
 import { Edit } from 'lucide-react';
 import ProductEditorDialog from './ProductEditorDialog';
 import { Button } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
 
-export default function EditableProduct({ product, children }) {
+export default function EditableProduct({ product, children, className }) {
   const { isEditMode } = useAdmin();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
@@ -12,7 +13,7 @@ export default function EditableProduct({ product, children }) {
 
   return (
     <>
-      <div className="relative group border-2 border-dashed border-blue-400/30 hover:border-blue-500 rounded-lg transition-all p-1">
+      <div className={cn("relative group border-2 border-dashed border-blue-400/30 hover:border-blue-500 rounded-lg transition-all p-1", className)}>
          {children}
          <Button 
            size="icon"
