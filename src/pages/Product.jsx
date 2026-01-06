@@ -144,7 +144,7 @@ export default function Product() {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 lg:py-12">
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
           {/* Gallery */}
           <div className="space-y-4">
@@ -153,7 +153,7 @@ export default function Product() {
             </EditableProduct>
             
             {allSpecs.map((specUrl, index) => (
-              <div key={index} className="hidden md:block">
+              <div key={index}>
                 <div className="flex items-center justify-between mb-2">
                   <h3 className="text-lg font-bold text-slate-800">מפרט טכני {allSpecs.length > 1 ? index + 1 : ''}</h3>
                   <Button variant="ghost" size="sm" onClick={() => handleDownload(specUrl, index)}>
