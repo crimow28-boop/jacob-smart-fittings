@@ -14,37 +14,41 @@ export default function About() {
     initialData: {}
   });
 
+import EditableAbout from '../components/about/EditableAbout';
+
   return (
     <div className="min-h-screen bg-white">
       {/* Hero */}
-      <div className="bg-slate-900 text-white py-20">
-        <div className="container px-4 md:px-6 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">{aboutContent.main_title || 'קצת עלינו'}</h1>
-          <p className="text-xl text-slate-300 max-w-2xl mx-auto">
-            אנחנו מאמינים באיכות, שירות ומחויבות ללקוחות שלנו. הסיפור שלנו מתחיל בתשוקה למוצרים מעולים.
-          </p>
-        </div>
-      </div>
-
-      <div className="container px-4 md:px-6 py-16">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div className="prose prose-lg text-slate-600">
-            <h2 className="text-3xl font-bold text-slate-900 mb-6">החזון שלנו</h2>
-            <p className="whitespace-pre-line">
-              {aboutContent.main_text || `אנחנו כאן כדי לספק לכם את המוצרים הטובים ביותר בשוק, תוך הקפדה על איכות ללא פשרות ושירות לקוחות יוצא דופן.
-              
-              הצוות שלנו מורכב מאנשי מקצוע מנוסים שחיים ונושמים את התחום, ותמיד שמחים לעזור ולייעץ. אנחנו מאמינים שקנייה צריכה להיות חוויה מהנה ובטוחה.`}
+      <EditableAbout content={aboutContent}>
+        <div className="bg-slate-900 text-white py-20">
+          <div className="container px-4 md:px-6 text-center">
+            <h1 className="text-4xl md:text-5xl font-bold mb-6">{aboutContent.main_title || 'קצת עלינו'}</h1>
+            <p className="text-xl text-slate-300 max-w-2xl mx-auto">
+              אנחנו מאמינים באיכות, שירות ומחויבות ללקוחות שלנו. הסיפור שלנו מתחיל בתשוקה למוצרים מעולים.
             </p>
           </div>
-          <div className="bg-slate-100 rounded-2xl p-8 aspect-square flex items-center justify-center">
-            {aboutContent.main_logo ? (
-                <img src={aboutContent.main_logo} alt="About Us" className="w-full h-full object-contain" />
-            ) : (
-                <div className="text-slate-300 font-bold text-4xl">LOGO</div>
-            )}
+        </div>
+
+        <div className="container px-4 md:px-6 py-16">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div className="prose prose-lg text-slate-600">
+              <h2 className="text-3xl font-bold text-slate-900 mb-6">החזון שלנו</h2>
+              <p className="whitespace-pre-line">
+                {aboutContent.main_text || `אנחנו כאן כדי לספק לכם את המוצרים הטובים ביותר בשוק, תוך הקפדה על איכות ללא פשרות ושירות לקוחות יוצא דופן.
+                
+                הצוות שלנו מורכב מאנשי מקצוע מנוסים שחיים ונושמים את התחום, ותמיד שמחים לעזור ולייעץ. אנחנו מאמינים שקנייה צריכה להיות חוויה מהנה ובטוחה.`}
+              </p>
+            </div>
+            <div className="bg-slate-100 rounded-2xl p-8 aspect-square flex items-center justify-center">
+              {aboutContent.main_logo ? (
+                  <img src={aboutContent.main_logo} alt="About Us" className="w-full h-full object-contain" />
+              ) : (
+                  <div className="text-slate-300 font-bold text-4xl">LOGO</div>
+              )}
+            </div>
           </div>
         </div>
-      </div>
+      </EditableAbout>
 
       {/* Values */}
       <div className="bg-slate-50 py-16">

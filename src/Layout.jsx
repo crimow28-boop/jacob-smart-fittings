@@ -4,6 +4,9 @@ import { AdminProvider } from './components/admin/AdminContext';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import WhatsAppButton from './components/layout/WhatsAppButton';
+import AdminToolbar from './components/admin/AdminToolbar';
+import AccessibilityMenu from './components/accessibility/AccessibilityMenu';
+import { Toaster } from '@/components/ui/sonner';
 
 export default function Layout({ children }) {
   return (
@@ -15,7 +18,10 @@ export default function Layout({ children }) {
              {children}
            </main>
            <WhatsAppButton />
+           <AdminToolbar />
+           <AccessibilityMenu />
            <Footer />
+           <Toaster />
         </div>
       </CartProvider>
     </AdminProvider>
