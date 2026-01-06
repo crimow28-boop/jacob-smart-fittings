@@ -23,7 +23,7 @@ export default function FeaturedProducts() {
 
   return (
     <section className="py-16">
-      <div className="container px-4 md:px-6">
+      <div className="container mx-auto px-4 md:px-6">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold tracking-tight text-slate-900">כל המוצרים שלנו</h2>
           <p className="text-slate-500 mt-2 max-w-2xl mx-auto">
