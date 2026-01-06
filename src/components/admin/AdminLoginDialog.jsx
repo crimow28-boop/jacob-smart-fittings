@@ -10,7 +10,7 @@ export default function AdminLoginDialog({ open, onOpenChange }) {
   const { isEditMode, setIsEditMode } = useAdmin();
 
   const handleLogin = () => {
-    if (password === 'admin123' || isEditMode) { // Simple mock auth or toggle
+    if (password === '1984' || isEditMode) { // Simple mock auth or toggle
       setIsEditMode(!isEditMode);
       onOpenChange(false);
       setPassword('');
