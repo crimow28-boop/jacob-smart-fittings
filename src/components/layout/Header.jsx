@@ -29,7 +29,7 @@ export default function Header() {
       <div className="container flex h-16 items-center justify-between">
         <div className="flex items-center gap-6">
           <Link to={createPageUrl('Home')} className="flex items-center space-x-2 font-bold text-xl">
-            <span>Store</span>
+            {/* Logo will be placed here */}
           </Link>
           <nav className="hidden md:flex gap-6">
             <NavLinks />
