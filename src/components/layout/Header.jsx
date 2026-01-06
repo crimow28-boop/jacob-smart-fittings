@@ -26,26 +26,9 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-16 items-center justify-between">
-        <div className="flex items-center gap-6">
-          <Link to={createPageUrl('Home')} className="flex items-center space-x-2 font-bold text-xl">
-            {/* Logo will be placed here */}
-          </Link>
-          <nav className="hidden md:flex gap-6">
-            <NavLinks />
-          </nav>
-        </div>
-
-        <div className="flex items-center gap-4">
-          <Button variant="ghost" size="icon" className="relative" onClick={() => setIsCartOpen(true)}>
-            <ShoppingCart className="h-5 w-5" />
-            {cartCount > 0 && (
-              <Badge className="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center p-0 text-xs">
-                {cartCount}
-              </Badge>
-            )}
-          </Button>
-          
+      <div className="container flex h-16 items-center">
+        {/* Right Section (Start) - Nav / Menu */}
+        <div className="flex-1 flex items-center justify-start">
           <Sheet>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon" className="md:hidden">
@@ -58,6 +41,33 @@ export default function Header() {
               </nav>
             </SheetContent>
           </Sheet>
+
+          <nav className="hidden md:flex gap-6">
+            <NavLinks />
+          </nav>
+        </div>
+
+        {/* Center Section - Logo */}
+        <div className="flex-shrink-0">
+          <Link to={createPageUrl('Home')} className="flex items-center justify-center">
+            <img 
+              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6940808a9015b91c711aa067/2b0d0b633_7cab1a357_f6a21b46c_Artboard5-1.png" 
+              alt="JACOB Smart fittings LTD" 
+              className="h-10 md:h-12 w-auto object-contain"
+            />
+          </Link>
+        </div>
+
+        {/* Left Section (End) - Cart */}
+        <div className="flex-1 flex items-center justify-end gap-4">
+          <Button variant="ghost" size="icon" className="relative" onClick={() => setIsCartOpen(true)}>
+            <ShoppingCart className="h-5 w-5" />
+            {cartCount > 0 && (
+              <Badge className="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center p-0 text-xs">
+                {cartCount}
+              </Badge>
+            )}
+          </Button>
         </div>
       </div>
       <CartDrawer />
