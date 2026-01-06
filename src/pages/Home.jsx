@@ -20,9 +20,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-white">
-      <EditableHero content={siteContent}>
-        <HeroSection content={siteContent} />
-      </EditableHero>
+      {/* Hero Section removed */}
       <TrustSection />
       <FeaturedProducts />
       <CategoryGrid />
