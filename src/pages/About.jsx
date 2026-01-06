@@ -3,6 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import { Card, CardContent } from '@/components/ui/card';
 import { CheckCircle2 } from 'lucide-react';
+import EditableAbout from '../components/about/EditableAbout';
 
 export default function About() {
   const { data: aboutContent } = useQuery({
@@ -13,8 +14,6 @@ export default function About() {
     },
     initialData: {}
   });
-
-import EditableAbout from '../components/about/EditableAbout';
 
   return (
     <div className="min-h-screen bg-white">
