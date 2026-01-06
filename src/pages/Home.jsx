@@ -21,7 +21,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section removed */}
-      <TrustSection />
+      {/* Trust Section removed */}
       <FeaturedProducts />
       <CategoryGrid />
       <PartnerLogos />
