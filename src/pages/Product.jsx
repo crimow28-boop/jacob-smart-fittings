@@ -197,7 +197,7 @@ export default function Product() {
                   אזל מהמלאי
                 </Badge>
               )}
-              <h1 className="text-3xl lg:text-4xl font-bold text-slate-800 mb-4">
+              <h1 className="text-2xl lg:text-4xl font-bold text-slate-800 mb-4">
                 {product.name}
               </h1>
               {/* Price removed */}
