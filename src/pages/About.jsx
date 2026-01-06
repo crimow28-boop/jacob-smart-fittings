@@ -19,10 +19,10 @@ export default function About() {
     <div className="min-h-screen bg-white">
       {/* Hero */}
       <EditableAbout content={aboutContent}>
-        <div className="bg-slate-900 text-white py-20">
-          <div className="container px-4 md:px-6 text-center">
+        <div className="bg-primary text-primary-foreground py-20">
+          <div className="container mx-auto px-4 md:px-6 text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">{aboutContent.main_title || 'קצת עלינו'}</h1>
-            <p className="text-xl text-slate-300 max-w-2xl mx-auto">
+            <p className="text-xl text-primary-foreground/90 max-w-2xl mx-auto">
               אנחנו מאמינים באיכות, שירות ומחויבות ללקוחות שלנו. הסיפור שלנו מתחיל בתשוקה למוצרים מעולים.
             </p>
           </div>
