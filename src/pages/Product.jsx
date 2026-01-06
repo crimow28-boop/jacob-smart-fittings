@@ -288,19 +288,7 @@ export default function Product() {
                 </Button>
               </div>
               
-              <div className="mt-3 md:hidden space-y-2">
-                {allSpecs.map((specUrl, index) => (
-                  <Button
-                    key={index}
-                    variant="outline"
-                    className="w-full border-slate-300 hover:bg-slate-50 text-slate-600"
-                    onClick={() => handleDownload(specUrl, index)}
-                  >
-                    <FileText className="w-4 h-4 ml-2" />
-                    מפרט טכני {allSpecs.length > 1 ? index + 1 : ''}
-                  </Button>
-                ))}
-              </div>
+              {/* Mobile specs buttons removed, now showing unified view above */}
             </div>
 
             {/* Trust Badges */}
