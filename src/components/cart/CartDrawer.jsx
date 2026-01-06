@@ -41,7 +41,7 @@ export default function CartDrawer() {
                       <h4 className="font-medium truncate">{item.name}</h4>
                       <p className="text-sm text-slate-500 mt-1">כמות: {item.quantity}</p>
                       <div className="mt-2 flex items-center justify-between">
-                        <span className="font-bold">₪{item.price * item.quantity}</span>
+                        <span></span>
                         <Button 
                           variant="ghost" 
                           size="icon" 
@@ -58,13 +58,8 @@ export default function CartDrawer() {
             </ScrollArea>
             
             <div className="pt-4 mt-auto">
-              <Separator className="mb-4" />
-              <div className="flex justify-between items-center mb-4">
-                <span className="font-medium">סה"כ לתשלום</span>
-                <span className="text-xl font-bold">₪{total}</span>
-              </div>
               <Button className="w-full" size="lg">
-                מעבר לתשלום
+                סיום ושליחת בקשה
               </Button>
             </div>
           </>

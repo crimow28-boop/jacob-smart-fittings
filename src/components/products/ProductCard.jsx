@@ -61,10 +61,7 @@ export default function ProductCard({ product }) {
       </CardContent>
       
       <CardFooter className="p-4 pt-0 flex items-center justify-between">
-        <div className="font-bold text-lg">
-          {product.price_type === 'starting_from' && <span className="text-xs font-normal text-slate-500 ml-1">החל מ-</span>}
-          ₪{product.price?.toLocaleString()}
-        </div>
+        <div></div>
         {!product.in_stock && (
           <span className="text-xs text-red-500 font-medium">אזל מהמלאי</span>
         )}
