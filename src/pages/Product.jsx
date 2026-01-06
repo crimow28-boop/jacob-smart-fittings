@@ -190,7 +190,7 @@ export default function Product() {
           </div>
 
           {/* Product Info */}
-          <div>
+          <div className="min-w-0">
             <div className="mb-6">
               {!product.in_stock && (
                 <Badge variant="secondary" className="mb-3 bg-red-100 text-red-800">
