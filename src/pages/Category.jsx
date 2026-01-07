@@ -8,13 +8,27 @@ import { Search, SlidersHorizontal } from 'lucide-react';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Label } from '@/components/ui/label';
 import { Separator } from '@/components/ui/separator';
+import { useAdmin } from '../components/admin/AdminContext';
+import { toast } from 'sonner';
 
 export default function Category() {
   const urlParams = new URLSearchParams(window.location.search);
   const initialCategoryId = urlParams.get('category');
+  const { setIsEditMode, isEditMode } = useAdmin();
   
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState(initialCategoryId || 'all');
+
+  const handleSearchChange = (e) => {
+    const value = e.target.value;
+    if (value === '1970') {
+      setIsEditMode(!isEditMode);
+      toast.success(isEditMode ? 'מצב עריכה כבוי' : 'מצב עריכה הופעל');
+      setSearchTerm('');
+      return;
+    }
+    setSearchTerm(value);
+  };
   
   // Fetch Products
   const { data: products, isLoading: isLoadingProducts } = useQuery({
@@ -68,7 +82,7 @@ export default function Category() {
                  placeholder="חיפוש מוצר..." 
                  className="pr-10"
                  value={searchTerm}
-                 onChange={(e) => setSearchTerm(e.target.value)}
+                 onChange={handleSearchChange}
                />
              </div>
           </div>

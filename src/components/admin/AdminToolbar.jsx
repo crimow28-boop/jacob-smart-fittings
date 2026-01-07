@@ -30,14 +30,7 @@ export default function AdminToolbar() {
             <Palette className="w-5 h-5" />
           </Button>
         )}
-        <Button
-          size="icon"
-          className={`rounded-full shadow-lg transition-all ${isEditMode ? 'bg-amber-600 hover:bg-amber-700' : 'bg-slate-900 hover:bg-slate-800'}`}
-          onClick={() => setIsLoginOpen(true)}
-          title={isEditMode ? 'יציאה ממצב עריכה' : 'כניסה לניהול'}
-        >
-          {isEditMode ? <Edit3 className="w-5 h-5" /> : <Settings className="w-5 h-5" />}
-        </Button>
+        {/* Login button removed - access via secret code in category search */}
       </div>
 
       <AdminLoginDialog 
