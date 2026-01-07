@@ -19,6 +19,11 @@ export default function Contact() {
           <div className="text-center mb-12">
             <h1 className="text-4xl font-bold text-slate-900 mb-4">צור קשר</h1>
             <p className="text-slate-600">אנחנו כאן לכל שאלה, בקשה או התייעצות.</p>
+            <img 
+              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6940808a9015b91c711aa067/3279755f3_Screenshot2026-01-07112548.png"
+              alt="Jacob Fittings"
+              className="h-20 mx-auto mt-8 object-contain"
+            />
           </div>
 
           <div className="grid md:grid-cols-1 gap-8 max-w-2xl mx-auto">
