@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import { createPageUrl } from '@/utils';
@@ -32,6 +32,7 @@ const WHATSAPP_NUMBER = '972547391001';
 export default function Product() {
   const urlParams = new URLSearchParams(window.location.search);
   const productId = urlParams.get('id');
+  const navigate = useNavigate();
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -91,18 +92,14 @@ export default function Product() {
     );
   }
 
+  useEffect(() => {
+    if (!isLoading && (error || !product)) {
+      navigate(createPageUrl('Home'), { replace: true });
+    }
+  }, [isLoading, error, product, navigate]);
+
   if (error || !product) {
-    return (
-      <div className="min-h-screen bg-slate-50 flex items-center justify-center">
-        <div className="text-center">
-          <h2 className="text-2xl font-bold text-slate-800 mb-2">המוצר לא נמצא</h2>
-          <p className="text-slate-500 mb-4">המוצר שאתה מחפש לא קיים.</p>
-          <Link to={createPageUrl('Home')}>
-            <Button>חזרה לדף הבית</Button>
-          </Link>
-        </div>
-      </div>
-    );
+    return null;
   }
 
   // Combine old and new specs
