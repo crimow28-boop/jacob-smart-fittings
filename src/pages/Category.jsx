@@ -88,46 +88,9 @@ export default function Category() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-          {/* Sidebar Filters */}
-          <div className="space-y-6">
-            <div className="bg-white p-6 rounded-lg border border-slate-200 sticky top-24">
-              <div className="flex items-center gap-2 mb-4 font-bold text-lg">
-                <SlidersHorizontal className="w-5 h-5" />
-                סינון
-              </div>
-              <Separator className="mb-4" />
-              
-              <div className="space-y-4">
-                <h3 className="font-medium">קטגוריות</h3>
-                <div className="space-y-2">
-                  <div className="flex items-center space-x-2 space-x-reverse">
-                    <Checkbox 
-                      id="cat-all" 
-                      checked={selectedCategory === 'all'}
-                      onCheckedChange={() => setSelectedCategory('all')}
-                    />
-                    <Label htmlFor="cat-all" className="cursor-pointer">הכל</Label>
-                  </div>
-                  {categories.map(category => (
-                    <div key={category.id} className="flex items-center space-x-2 space-x-reverse">
-                      <Checkbox 
-                        id={`cat-${category.id}`}
-                        checked={selectedCategory === category.id}
-                        onCheckedChange={() => setSelectedCategory(category.id)}
-                      />
-                      <Label htmlFor={`cat-${category.id}`} className="cursor-pointer">
-                        {category.name}
-                      </Label>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-
+        <div className="flex flex-col gap-8">
           {/* Product Grid */}
-          <div className="lg:col-span-3">
+          <div className="w-full">
             {filteredProducts.length === 0 ? (
               <div className="text-center py-20 bg-white rounded-lg border border-slate-200">
                 <p className="text-lg text-slate-500">לא נמצאו מוצרים התואמים את החיפוש שלך.</p>
