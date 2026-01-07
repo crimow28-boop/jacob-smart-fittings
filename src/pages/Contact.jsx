@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mail, Phone, MapPin, Send, Facebook, Instagram } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, Facebook, Instagram, MessageCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -91,6 +91,17 @@ export default function Contact() {
                 <Instagram className="w-7 h-7" />
               </div>
               <span className="text-sm font-medium text-slate-500 group-hover:text-[#E4405F] transition-colors">Instagram</span>
+            </a>
+            <a 
+              href="https://wa.me/972547391001" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="group flex flex-col items-center gap-2"
+            >
+              <div className="w-14 h-14 bg-white border-2 border-slate-100 text-slate-600 rounded-2xl flex items-center justify-center group-hover:bg-[#25D366] group-hover:text-white group-hover:border-[#25D366] transition-all duration-300 shadow-sm">
+                <MessageCircle className="w-7 h-7" />
+              </div>
+              <span className="text-sm font-medium text-slate-500 group-hover:text-[#25D366] transition-colors">WhatsApp</span>
             </a>
           </motion.div>
         </div>
