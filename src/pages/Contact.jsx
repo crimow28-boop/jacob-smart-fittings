@@ -14,9 +14,9 @@ export default function Contact() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 py-12">
-      <div className="container px-4 md:px-6">
-        <div className="max-w-4xl mx-auto">
+    <div className="min-h-[calc(100vh-4rem)] bg-gradient-to-b from-slate-50 to-white flex items-center justify-center py-12">
+      <div className="container px-4 md:px-6 w-full">
+        <div className="max-w-4xl mx-auto w-full">
           <div className="text-center mb-12">
             <h1 className="text-4xl font-bold text-slate-900 mb-4">צור קשר</h1>
             <p className="text-slate-600">אנחנו כאן לכל שאלה, בקשה או התייעצות.</p>
