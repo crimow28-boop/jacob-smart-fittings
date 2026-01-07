@@ -10,7 +10,7 @@ export default function PartnerLogos() {
   const [showEditor, setShowEditor] = useState(false);
 
   const { data: aboutContent, isLoading } = useQuery({
-    queryKey: ['about-content-partners'],
+    queryKey: ['about-content'],
     queryFn: async () => {
         const res = await base44.entities.AboutContent.list();
         return res[0] || {};
