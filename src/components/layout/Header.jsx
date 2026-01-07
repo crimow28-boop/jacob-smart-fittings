@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { ShoppingCart, Menu, Search } from 'lucide-react';
+import { ShoppingCart, Menu, Search, Facebook, Instagram } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
@@ -96,7 +96,23 @@ export default function Header() {
         </div>
 
         {/* Left Section (End) - Cart */}
-        <div className="flex-1 flex items-center justify-end gap-4">
+        <div className="flex-1 flex items-center justify-end gap-2">
+          <a 
+            href="https://www.facebook.com/share/1G7AJoYa4L/?mibextid=wwXIfr" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="text-slate-600 hover:text-[#1877F2] transition-colors p-2"
+          >
+            <Facebook className="h-5 w-5" />
+          </a>
+          <a 
+            href="https://www.instagram.com/jacob.fittings?igsh=MTRrYTZpbWFpa2pubw%3D%3D&utm_source=qr" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="text-slate-600 hover:text-[#E4405F] transition-colors p-2"
+          >
+            <Instagram className="h-5 w-5" />
+          </a>
           <Button variant="ghost" size="icon" className="relative" onClick={() => setIsCartOpen(true)}>
             <ShoppingCart className="h-5 w-5" />
             {cartCount > 0 && (
