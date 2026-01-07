@@ -102,7 +102,7 @@ export default function About() {
         {/* 5. Partners Section */}
         {aboutContent.sub_logos && aboutContent.sub_logos.length > 0 && (
           <div className="py-20 bg-white">
-            <div className="container px-4 md:px-6">
+            <div className="container mx-auto px-4 md:px-6">
               <h2 className="text-2xl font-bold text-center text-slate-400 mb-12">השותפים שלנו</h2>
               <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-500">
                 {aboutContent.sub_logos.map((logo, index) => (
