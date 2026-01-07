@@ -21,6 +21,14 @@ export default function Contact() {
             <p className="text-slate-600">אנחנו כאן לכל שאלה, בקשה או התייעצות.</p>
           </div>
 
+          <div className="flex justify-center mb-12">
+            <img 
+              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6940808a9015b91c711aa067/c7db0a771_Screenshot2026-01-07112548.png" 
+              alt="Jacob Logo" 
+              className="h-24 md:h-32 object-contain"
+            />
+          </div>
+
           <div className="grid md:grid-cols-1 gap-8 max-w-2xl mx-auto">
             {/* Contact Info */}
             <div className="space-y-6">
