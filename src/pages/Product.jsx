@@ -214,8 +214,8 @@ export default function Product() {
                   {product.video_url.includes('youtube') ? (
                     <iframe
                       src={product.video_url.includes('?') ? 
-                        `${product.video_url}&rel=0&modestbranding=1` : 
-                        `${product.video_url}?rel=0&modestbranding=1`
+                        `${product.video_url}&rel=0&modestbranding=1&autoplay=1&mute=1` : 
+                        `${product.video_url}?rel=0&modestbranding=1&autoplay=1&mute=1`
                       }
                       title={`${product.name} video`}
                       className="w-full h-full"
@@ -225,7 +225,10 @@ export default function Product() {
                   ) : /* Vimeo */
                   product.video_url.includes('vimeo') ? (
                     <iframe
-                      src={product.video_url}
+                      src={product.video_url.includes('?') ?
+                        `${product.video_url}&autoplay=1&muted=1` :
+                        `${product.video_url}?autoplay=1&muted=1`
+                      }
                       title={`${product.name} video`}
                       className="w-full h-full"
                       allow="autoplay; fullscreen; picture-in-picture"
@@ -236,6 +239,8 @@ export default function Product() {
                     <video 
                       src={product.video_url} 
                       controls
+                      autoPlay
+                      muted
                       className="w-full h-full object-contain bg-black"
                     />
                   )}
