@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Facebook, Instagram, Twitter } from 'lucide-react';
+import { Facebook, Instagram, MessageCircle } from 'lucide-react';
 import { createPageUrl } from '@/utils';
 
 export default function Footer() {
@@ -14,11 +14,9 @@ export default function Footer() {
           <a href="https://www.instagram.com/jacob.fittings?igsh=MTRrYTZpbWFpa2pubw%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer">
             <ButtonIcon icon={<Instagram className="w-5 h-5" />} />
           </a>
-        </div>
-        <div className="flex flex-wrap justify-center gap-6 text-sm text-slate-500">
-          <Link to={createPageUrl('Terms')} className="hover:text-primary transition-colors">תקנון האתר</Link>
-          <Link to={createPageUrl('Privacy')} className="hover:text-primary transition-colors">מדיניות פרטיות</Link>
-          <Link to={createPageUrl('Accessibility')} className="hover:text-primary transition-colors">הצהרת נגישות</Link>
+          <a href="https://wa.me/972547391001" target="_blank" rel="noopener noreferrer">
+            <ButtonIcon icon={<MessageCircle className="w-5 h-5" />} />
+          </a>
         </div>
         <div className="flex flex-wrap justify-center gap-6 text-sm text-slate-500">
           <Link to={createPageUrl('Terms')} className="hover:text-primary transition-colors">תקנון האתר</Link>
