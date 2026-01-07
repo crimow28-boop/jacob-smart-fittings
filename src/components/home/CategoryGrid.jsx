@@ -34,9 +34,9 @@ export default function CategoryGrid() {
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
           {categories.slice(0, 6).map((category) => (
             <Link key={category.id} to={createPageUrl('Category') + `?category=${category.id}`}>
-              <Card className="h-full hover:shadow-md transition-shadow cursor-pointer border-slate-200">
+              <Card className="h-full hover:shadow-md transition-shadow cursor-pointer border-slate-200 rounded-none">
                 <CardContent className="p-6 flex flex-col items-center justify-center text-center h-full min-h-[140px]">
-                  <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4 text-primary font-bold text-lg">
+                  <div className="w-12 h-12 bg-primary/10 rounded-none flex items-center justify-center mb-4 text-primary font-bold text-lg">
                     {category.name.charAt(0)}
                   </div>
                   <span className="font-medium text-slate-900">{category.name}</span>

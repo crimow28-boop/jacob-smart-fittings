@@ -13,7 +13,7 @@ export default function EditableProduct({ product, children, className }) {
 
   return (
     <>
-      <div className={cn("relative group border-2 border-dashed border-blue-400/30 hover:border-blue-500 rounded-lg transition-all p-1", className)}>
+      <div className={cn("relative group border-2 border-dashed border-blue-400/30 hover:border-blue-500 rounded-none transition-all p-1", className)}>
          {children}
          <Button 
            size="icon"

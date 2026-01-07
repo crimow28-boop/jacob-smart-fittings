@@ -40,9 +40,9 @@ export default function About() {
             </div>
             <div className="flex items-center justify-center">
               {aboutContent.main_logo ? (
-                  <img src={aboutContent.main_logo} alt="About Us" className="w-full h-auto rounded-2xl shadow-sm" />
+                  <img src={aboutContent.main_logo} alt="About Us" className="w-full h-auto rounded-none shadow-sm" />
               ) : (
-                  <div className="w-full aspect-square bg-slate-100 rounded-2xl flex items-center justify-center p-8">
+                  <div className="w-full aspect-square bg-slate-100 rounded-none flex items-center justify-center p-8">
                     <div className="text-slate-300 font-bold text-4xl">LOGO</div>
                   </div>
               )}
@@ -79,7 +79,7 @@ export default function About() {
             ].map((value, i) => (
               <Card key={i} className="border-none shadow-sm hover:shadow-md transition-shadow">
                 <CardContent className="p-8 text-center">
-                  <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4 text-primary">
+                  <div className="w-12 h-12 bg-primary/10 rounded-none flex items-center justify-center mx-auto mb-4 text-primary">
                     <CheckCircle2 className="w-6 h-6" />
                   </div>
                   <h3 className="font-bold text-xl mb-3">{value.title}</h3>
