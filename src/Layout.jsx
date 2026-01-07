@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import { CartProvider } from './components/cart/CartContext';
@@ -64,6 +65,11 @@ export default function Layout({ children }) {
   const primaryHsl = siteContent?.primary_color ? hexToHsl(siteContent.primary_color) : '';
   const primaryHoverHsl = siteContent?.primary_hover_color ? hexToHsl(siteContent.primary_hover_color) : '';
   const accentHsl = siteContent?.accent_color ? hexToHsl(siteContent.accent_color) : '';
+  const location = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
 
   return (
     <AdminProvider>
