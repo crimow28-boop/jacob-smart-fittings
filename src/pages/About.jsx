@@ -38,11 +38,13 @@ export default function About() {
                 הצוות שלנו מורכב מאנשי מקצוע מנוסים שחיים ונושמים את התחום, ותמיד שמחים לעזור ולייעץ. אנחנו מאמינים שקנייה צריכה להיות חוויה מהנה ובטוחה.`}
               </p>
             </div>
-            <div className="bg-slate-100 rounded-2xl p-8 aspect-square flex items-center justify-center">
+            <div className="flex items-center justify-center">
               {aboutContent.main_logo ? (
-                  <img src={aboutContent.main_logo} alt="About Us" className="w-full h-full object-contain" />
+                  <img src={aboutContent.main_logo} alt="About Us" className="w-full h-auto rounded-2xl shadow-sm" />
               ) : (
-                  <div className="text-slate-300 font-bold text-4xl">LOGO</div>
+                  <div className="w-full aspect-square bg-slate-100 rounded-2xl flex items-center justify-center p-8">
+                    <div className="text-slate-300 font-bold text-4xl">LOGO</div>
+                  </div>
               )}
             </div>
           </div>
