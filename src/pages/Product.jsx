@@ -68,6 +68,12 @@ export default function Product() {
     window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${message}`, '_blank');
   };
 
+  useEffect(() => {
+    if (!isLoading && (error || !product)) {
+      navigate(createPageUrl('Home'), { replace: true });
+    }
+  }, [isLoading, error, product, navigate]);
+
   if (isLoading) {
     return (
       <div className="min-h-screen bg-slate-50 py-8">
@@ -91,12 +97,6 @@ export default function Product() {
       </div>
     );
   }
-
-  useEffect(() => {
-    if (!isLoading && (error || !product)) {
-      navigate(createPageUrl('Home'), { replace: true });
-    }
-  }, [isLoading, error, product, navigate]);
 
   if (error || !product) {
     return null;
