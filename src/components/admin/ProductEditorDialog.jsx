@@ -18,6 +18,7 @@ export default function ProductEditorDialog({ open, onOpenChange, product }) {
     description: '',
     short_description: '',
     price: 0,
+    order: 0,
     images: [],
     specification_urls: [],
     video_url: '',
@@ -32,6 +33,7 @@ export default function ProductEditorDialog({ open, onOpenChange, product }) {
         description: product.description || '',
         short_description: product.short_description || '',
         price: product.price || 0,
+        order: product.order || 0,
         images: product.images || [],
         specification_urls: product.specification_urls || [],
         video_url: product.video_url || '',
@@ -46,6 +48,7 @@ export default function ProductEditorDialog({ open, onOpenChange, product }) {
       const formattedData = {
         ...data,
         price: Number(data.price),
+        order: Number(data.order || 0),
       };
       return await base44.entities.Product.update(product.id, formattedData);
     },
@@ -117,6 +120,15 @@ export default function ProductEditorDialog({ open, onOpenChange, product }) {
                   onChange={(e) => handleChange('price', e.target.value)}
                 />
               </div>
+            </div>
+
+            <div className="space-y-2">
+               <Label>סדר תצוגה (נמוך לגבוה)</Label>
+               <Input 
+                 type="number"
+                 value={formData.order} 
+                 onChange={(e) => handleChange('order', e.target.value)}
+               />
             </div>
 
             {/* Descriptions */}

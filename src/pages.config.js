@@ -1,23 +1,23 @@
 import Accessibility from './pages/Accessibility';
-import Category from './pages/Category';
 import Home from './pages/Home';
 import Privacy from './pages/Privacy';
 import Product from './pages/Product';
 import Terms from './pages/Terms';
 import About from './pages/About';
 import Contact from './pages/Contact';
+import Category from './pages/Category';
 import __Layout from './Layout.jsx';
 
 
 export const PAGES = {
     "Accessibility": Accessibility,
-    "Category": Category,
     "Home": Home,
     "Privacy": Privacy,
     "Product": Product,
     "Terms": Terms,
     "About": About,
     "Contact": Contact,
+    "Category": Category,
 }
 
 export const pagesConfig = {

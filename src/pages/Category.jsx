@@ -33,7 +33,7 @@ export default function Category() {
   // Fetch Products
   const { data: products, isLoading: isLoadingProducts } = useQuery({
     queryKey: ['products'],
-    queryFn: async () => await base44.entities.Product.list(),
+    queryFn: async () => await base44.entities.Product.list('order'),
     initialData: []
   });
 
