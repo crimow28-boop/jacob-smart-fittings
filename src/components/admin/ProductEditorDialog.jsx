@@ -23,7 +23,6 @@ export default function ProductEditorDialog({ open, onOpenChange, product }) {
     video_url: '',
     in_stock: true,
     features: [],
-    order: 999,
   });
 
   useEffect(() => {
@@ -38,7 +37,6 @@ export default function ProductEditorDialog({ open, onOpenChange, product }) {
         video_url: product.video_url || '',
         in_stock: product.in_stock ?? true,
         features: product.features || [],
-        order: product.order || 999,
       });
     }
   }, [product]);
@@ -48,7 +46,6 @@ export default function ProductEditorDialog({ open, onOpenChange, product }) {
       const formattedData = {
         ...data,
         price: Number(data.price),
-        order: Number(data.order),
       };
       return await base44.entities.Product.update(product.id, formattedData);
     },
@@ -120,15 +117,6 @@ export default function ProductEditorDialog({ open, onOpenChange, product }) {
                   onChange={(e) => handleChange('price', e.target.value)}
                 />
               </div>
-            </div>
-
-            <div className="space-y-2">
-              <Label>סדר תצוגה (מספר נמוך מופיע ראשון)</Label>
-              <Input 
-                type="number"
-                value={formData.order} 
-                onChange={(e) => handleChange('order', e.target.value)}
-              />
             </div>
 
             {/* Descriptions */}
