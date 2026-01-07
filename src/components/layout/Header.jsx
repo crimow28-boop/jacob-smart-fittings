@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { ShoppingCart, Menu, Search } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -14,6 +14,30 @@ export default function Header() {
   const { cart, setIsCartOpen } = useCart();
   const { isEditMode } = useAdmin();
   const cartCount = cart.reduce((acc, item) => acc + item.quantity, 0);
+  const location = useLocation();
+  const [showLogo, setShowLogo] = useState(true);
+
+  useEffect(() => {
+    const isHome = location.pathname === '/' || location.pathname === '/Home';
+    
+    if (isHome) {
+      const handleScroll = () => {
+        if (window.scrollY > 150) {
+          setShowLogo(true);
+        } else {
+          setShowLogo(false);
+        }
+      };
+
+      // Initial check
+      handleScroll();
+
+      window.addEventListener('scroll', handleScroll);
+      return () => window.removeEventListener('scroll', handleScroll);
+    } else {
+      setShowLogo(true);
+    }
+  }, [location.pathname]);
 
   const NavLinks = () => (
     <>
@@ -48,7 +72,7 @@ export default function Header() {
         </div>
 
         {/* Center Section - Logo */}
-        <div className="flex-shrink-0">
+        <div className={`flex-shrink-0 transition-opacity duration-300 ${showLogo ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
           <Link to={createPageUrl('Home')} className="flex items-center justify-center">
             <img 
               src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6940808a9015b91c711aa067/2b0d0b633_7cab1a357_f6a21b46c_Artboard5-1.png" 
