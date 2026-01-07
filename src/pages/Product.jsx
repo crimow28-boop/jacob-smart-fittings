@@ -160,12 +160,11 @@ export default function Product() {
                 </div>
                 {specUrl.toLowerCase().includes('.pdf') ? (
                   <div 
-                    className="w-full h-64 border border-slate-200 rounded-none flex flex-col items-center justify-center bg-slate-50 cursor-pointer hover:bg-slate-100 transition-colors group"
+                    className="flex items-center gap-2 p-3 bg-slate-50 border border-slate-200 rounded-md cursor-pointer hover:bg-slate-100 transition-colors w-fit"
                     onClick={() => handleDownload(specUrl, index)}
                   >
-                    <FileText className="w-12 h-12 text-slate-400 group-hover:text-primary transition-colors mb-3" />
-                    <span className="font-medium text-slate-700">מפרט טכני (PDF)</span>
-                    <span className="text-sm text-slate-500 mt-1">לחץ להורדה</span>
+                    <FileText className="w-5 h-5 text-red-500" />
+                    <span className="font-medium text-slate-700 text-sm">קובץ PDF להורדה</span>
                   </div>
                 ) : (
                   <div 
