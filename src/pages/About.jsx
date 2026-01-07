@@ -39,11 +39,13 @@ export default function About() {
               </p>
             </div>
             <div className="flex items-center justify-center">
-              <img 
-                src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6940808a9015b91c711aa067/6b0f3d334_Screenshot2026-01-07112548.png" 
-                alt="Jacob Fittings" 
-                className="w-full h-auto rounded-none shadow-sm max-w-md mx-auto"
-              />
+              {aboutContent.main_logo ? (
+                  <img src={aboutContent.main_logo} alt="About Us" className="w-full h-auto rounded-none shadow-sm" />
+              ) : (
+                  <div className="w-full aspect-square bg-slate-100 rounded-none flex items-center justify-center p-8">
+                    <div className="text-slate-300 font-bold text-4xl">LOGO</div>
+                  </div>
+              )}
             </div>
           </div>
           {/* Partners Section */}

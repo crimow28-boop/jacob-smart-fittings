@@ -22,14 +22,6 @@ export default function Contact() {
           </div>
 
           <div className="grid md:grid-cols-1 gap-8 max-w-2xl mx-auto">
-            <div className="flex justify-center mb-6">
-              <img 
-                src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6940808a9015b91c711aa067/6b0f3d334_Screenshot2026-01-07112548.png" 
-                alt="Jacob Fittings" 
-                className="h-24 md:h-32 w-auto object-contain"
-              />
-            </div>
-
             {/* Contact Info */}
             <div className="space-y-6">
               <Card>
