@@ -24,7 +24,6 @@ export default function ProductEditorDialog({ open, onOpenChange, product }) {
     video_url: '',
     in_stock: true,
     features: [],
-    technical_details: [],
   });
 
   useEffect(() => {
@@ -40,7 +39,6 @@ export default function ProductEditorDialog({ open, onOpenChange, product }) {
         video_url: product.video_url || '',
         in_stock: product.in_stock ?? true,
         features: product.features || [],
-        technical_details: product.technical_details || [],
       });
     }
   }, [product]);
@@ -143,23 +141,13 @@ export default function ProductEditorDialog({ open, onOpenChange, product }) {
             </div>
 
             <div className="space-y-2">
-              <Label>תכונות/מאפיינים (כל שורה היא מאפיין נפרד)</Label>
-              <Textarea 
-                value={formData.features.join('\n')} 
-                onChange={(e) => handleChange('features', e.target.value.split('\n'))}
-                className="h-32"
-                placeholder="הכנס תכונות, כל אחת בשורה חדשה..."
-              />
-            </div>
-
-            <div className="space-y-2">
-              <Label>מפרט טכני/מידות (כל שורה היא פרט נפרד)</Label>
-              <Textarea 
-                value={formData.technical_details.join('\n')} 
-                onChange={(e) => handleChange('technical_details', e.target.value.split('\n'))}
-                className="h-32"
-                placeholder="הכנס מידות או פרטים טכניים, כל אחד בשורה חדשה..."
-              />
+               <Label>תכונות/מאפיינים (כל שורה היא מאפיין נפרד)</Label>
+               <Textarea 
+                 value={formData.features.join('\n')} 
+                 onChange={(e) => handleChange('features', e.target.value.split('\n'))}
+                 className="h-32"
+                 placeholder="הכנס תכונות, כל אחת בשורה חדשה..."
+               />
             </div>
 
             <div className="space-y-2">
