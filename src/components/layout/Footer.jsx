@@ -15,6 +15,11 @@ export default function Footer() {
             <ButtonIcon icon={<Instagram className="w-5 h-5" />} />
           </a>
         </div>
+        <div className="flex flex-wrap justify-center gap-6 text-sm text-slate-500">
+          <Link to={createPageUrl('Terms')} className="hover:text-primary transition-colors">תקנון האתר</Link>
+          <Link to={createPageUrl('Privacy')} className="hover:text-primary transition-colors">מדיניות פרטיות</Link>
+          <Link to={createPageUrl('Accessibility')} className="hover:text-primary transition-colors">הצהרת נגישות</Link>
+        </div>
         <div className="text-center text-sm text-slate-500">
           © {new Date().getFullYear()} JACOB Smart fittings LTD. כל הזכויות שמורות.
         </div>
