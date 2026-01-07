@@ -13,7 +13,7 @@ export default function ProductGallery({ images }) {
 
   return (
     <div className="space-y-4">
-      <div className="aspect-square bg-white rounded-xl overflow-hidden border border-slate-200 relative group">
+      <div className="aspect-square bg-white rounded-none overflow-hidden border border-slate-200 relative group">
         <img 
           src={mainImage || images[0]} 
           alt="Product Main" 
@@ -27,7 +27,7 @@ export default function ProductGallery({ images }) {
             <button 
               key={idx}
               onClick={() => setMainImage(img)}
-              className={`w-16 h-16 rounded-lg border-2 flex-shrink-0 overflow-hidden transition-all ${
+              className={`w-16 h-16 rounded-none border-2 flex-shrink-0 overflow-hidden transition-all ${
                 (mainImage || images[0]) === img ? 'border-amber-500' : 'border-slate-200 hover:border-slate-300'
               }`}
             >

@@ -178,7 +178,7 @@ export default function Product() {
                     <img 
                       src={specUrl} 
                       alt={`Technical Specification ${index + 1}`} 
-                      className="w-full h-auto object-contain border border-primary rounded-xl hover:opacity-90 transition-opacity"
+                      className="w-full h-auto object-contain border border-primary rounded-none hover:opacity-90 transition-opacity"
                     />
                     <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/20 rounded-lg pointer-events-none">
                       <Maximize2 className="w-12 h-12 text-white drop-shadow-lg" />
@@ -213,7 +213,7 @@ export default function Product() {
             {/* Video Section */}
             {product.video_url && (
               <div className="mb-6">
-                <div className="aspect-video bg-slate-100 rounded-lg overflow-hidden border border-slate-200">
+                <div className="aspect-video bg-slate-100 rounded-none overflow-hidden border border-slate-200">
                   {/* YouTube */}
                   {product.video_url.includes('youtube') ? (
                     <iframe
@@ -249,7 +249,7 @@ export default function Product() {
             <div className="space-y-4">
               <div className="flex items-center gap-4">
                 <span className="text-sm font-medium text-slate-600">כמות:</span>
-                <div className="flex items-center border border-slate-200 rounded-lg">
+                <div className="flex items-center border border-slate-200 rounded-none">
                   <Button
                     variant="ghost"
                     size="icon"
@@ -272,7 +272,7 @@ export default function Product() {
 
               <div className="flex gap-3">
                 <Button
-                  className="flex-1 bg-amber-600 hover:bg-amber-700 text-white"
+                  className="flex-1 bg-amber-600 hover:bg-amber-700 text-white rounded-none"
                   onClick={handleAddToCart}
                   disabled={!product.in_stock}
                 >
@@ -280,7 +280,7 @@ export default function Product() {
                   הוסף לבקשה
                 </Button>
                 <Button
-                  className="flex-1 bg-primary hover:bg-primary-hover text-white shadow-sm hover:shadow-md transition-all"
+                  className="flex-1 bg-primary hover:bg-primary-hover text-white shadow-sm hover:shadow-md transition-all rounded-none"
                   onClick={handleWhatsAppInquiry}
                 >
                   <MessageCircle className="w-4 h-4 ml-2" />

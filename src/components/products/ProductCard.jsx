@@ -13,7 +13,7 @@ export default function ProductCard({ product }) {
 
   return (
     <EditableProduct product={product} className="h-full">
-      <Card className="h-full flex flex-col group overflow-hidden transition-all hover:shadow-lg border-slate-200">
+      <Card className="h-full flex flex-col group overflow-hidden transition-all hover:shadow-lg border-slate-200 rounded-none">
         <div className="relative aspect-square overflow-hidden bg-white p-4">
           {product.images?.[0] ? (
             <img 
