@@ -22,6 +22,7 @@ export default function ProductEditorDialog({ open, onOpenChange, product }) {
     specification_urls: [],
     video_url: '',
     in_stock: true,
+    features: [],
   });
 
   useEffect(() => {
@@ -35,6 +36,7 @@ export default function ProductEditorDialog({ open, onOpenChange, product }) {
         specification_urls: product.specification_urls || [],
         video_url: product.video_url || '',
         in_stock: product.in_stock ?? true,
+        features: product.features || [],
       });
     }
   }, [product]);
@@ -123,6 +125,16 @@ export default function ProductEditorDialog({ open, onOpenChange, product }) {
                <Input 
                  value={formData.short_description} 
                  onChange={(e) => handleChange('short_description', e.target.value)}
+               />
+            </div>
+
+            <div className="space-y-2">
+               <Label>תכונות/מאפיינים (כל שורה היא מאפיין נפרד)</Label>
+               <Textarea 
+                 value={formData.features.join('\n')} 
+                 onChange={(e) => handleChange('features', e.target.value.split('\n'))}
+                 className="h-32"
+                 placeholder="הכנס תכונות, כל אחת בשורה חדשה..."
                />
             </div>
 

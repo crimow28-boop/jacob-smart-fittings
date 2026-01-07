@@ -57,7 +57,18 @@ export default function ProductCard({ product }) {
               {product.name}
             </Link>
           </h3>
-          {product.short_description && (
+          {product.features && product.features.length > 0 ? (
+            <div className="space-y-0">
+              {product.features.map((feature, idx) => (
+                <React.Fragment key={idx}>
+                  <div className="py-2 text-sm text-slate-600">
+                    {feature}
+                  </div>
+                  {idx < product.features.length - 1 && <div className="h-px bg-slate-200" />}
+                </React.Fragment>
+              ))}
+            </div>
+          ) : product.short_description && (
             <p className="text-sm text-slate-500 line-clamp-2">{product.short_description}</p>
           )}
         </CardContent>
