@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mail, Phone, MapPin, Send } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, Facebook, Instagram } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -44,12 +44,30 @@ export default function Contact() {
                   </div>
                   <div>
                     <h3 className="font-bold text-lg mb-1">אימייל</h3>
-                    <p className="text-slate-600">Office@k-jacob.co.il</p>
+                    <p className="text-slate-600">office@k-jacob.co.il</p>
                     <p className="text-sm text-slate-500 mt-1">מענה תוך 24 שעות</p>
                   </div>
                 </CardContent>
               </Card>
 
+              <div className="flex justify-center gap-6 pt-4">
+                <a 
+                  href="https://www.facebook.com/share/1G7AJoYa4L/?mibextid=wwXIfr" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center hover:bg-blue-600 hover:text-white transition-all"
+                >
+                  <Facebook className="w-6 h-6" />
+                </a>
+                <a 
+                  href="https://www.instagram.com/jacob.fittings?igsh=MTRrYTZpbWFpa2pubw%3D%3D&utm_source=qr" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="w-12 h-12 bg-pink-100 text-pink-600 rounded-full flex items-center justify-center hover:bg-pink-600 hover:text-white transition-all"
+                >
+                  <Instagram className="w-6 h-6" />
+                </a>
+              </div>
 
             </div>
 
