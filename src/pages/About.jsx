@@ -29,15 +29,14 @@ export default function About() {
 
         {/* 2. Text Section */}
         <div className="container mx-auto px-4 md:px-6 pb-16 max-w-4xl text-center">
-          <h1 className="text-3xl md:text-4xl font-bold mb-6 text-slate-900">חדשנות בתחום הנגרות בארץ ובעולם</h1>
-          <div className="prose prose-lg mx-auto text-slate-600 leading-relaxed">
-            <p className="mb-4">
-              אנו מתמחים בייצור, יבוא ושיווק של פתרונות פרזול חכמים ואיכותיים המשלבים נוחות ופרקטיקה לעבודה.
-              המוצרים שלנו מיועדים לשימוש מגוון רחב של בעלי מקצוע בכל רחבי הארץ, תמיכה וייעוץ עוד מהשלב הראשון תוך מתן שירות ותשומת לב לפרטים הקטנים.
-            </p>
-            <p>
-              כל מוצר שלנו נבחר בקפידה ומתוכנן בדגש על חוויית עבודה קלה ויעילה אשר באה לידי ביטוי עוד בשלב הייצור ועד לשלב ההתקנה.
-            </p>
+          <h1 className="text-3xl md:text-4xl font-bold mb-6 text-slate-900">
+            {aboutContent.main_title || "חדשנות בתחום הנגרות בארץ ובעולם"}
+          </h1>
+          <div className="prose prose-lg mx-auto text-slate-600 leading-relaxed whitespace-pre-wrap">
+            {aboutContent.main_text || `אנו מתמחים בייצור, יבוא ושיווק של פתרונות פרזול חכמים ואיכותיים המשלבים נוחות ופרקטיקה לעבודה.
+המוצרים שלנו מיועדים לשימוש מגוון רחב של בעלי מקצוע בכל רחבי הארץ, תמיכה וייעוץ עוד מהשלב הראשון תוך מתן שירות ותשומת לב לפרטים הקטנים.
+
+כל מוצר שלנו נבחר בקפידה ומתוכנן בדגש על חוויית עבודה קלה ויעילה אשר באה לידי ביטוי עוד בשלב הייצור ועד לשלב ההתקנה.`}
           </div>
         </div>
 
