@@ -75,7 +75,7 @@ export default function Header() {
         <div className={`flex-shrink-0 transition-opacity duration-300 ${showLogo ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
           <Link to={createPageUrl('Home')} className="flex items-center justify-center">
             <img 
-              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6940808a9015b91c711aa067/2b0d0b633_7cab1a357_f6a21b46c_Artboard5-1.png" 
+              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6940808a9015b91c711aa067/96cc46169_Screenshot2026-01-07112548.png" 
               alt="JACOB Smart fittings LTD" 
               className="h-10 md:h-12 w-auto object-contain"
             />

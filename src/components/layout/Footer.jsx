@@ -6,8 +6,18 @@ import { createPageUrl } from '@/utils';
 export default function Footer() {
   return (
     <footer className="bg-slate-50 border-t">
-      <div className="container py-6 px-4 md:px-6 text-center text-sm text-slate-500">
-        © {new Date().getFullYear()} Store. כל הזכויות שמורות.
+      <div className="container py-8 px-4 md:px-6 flex flex-col items-center gap-4">
+        <div className="flex gap-4">
+          <a href="https://www.facebook.com/share/1G7AJoYa4L/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer">
+            <ButtonIcon icon={<Facebook className="w-5 h-5" />} />
+          </a>
+          <a href="https://www.instagram.com/jacob.fittings?igsh=MTRrYTZpbWFpa2pubw%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer">
+            <ButtonIcon icon={<Instagram className="w-5 h-5" />} />
+          </a>
+        </div>
+        <div className="text-center text-sm text-slate-500">
+          © {new Date().getFullYear()} JACOB Smart fittings LTD. כל הזכויות שמורות.
+        </div>
       </div>
     </footer>
   );

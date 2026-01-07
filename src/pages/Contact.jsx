@@ -21,7 +21,7 @@ export default function Contact() {
             <p className="text-slate-600">אנחנו כאן לכל שאלה, בקשה או התייעצות.</p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-1 gap-8 max-w-2xl mx-auto">
             {/* Contact Info */}
             <div className="space-y-6">
               <Card>
@@ -53,36 +53,7 @@ export default function Contact() {
 
             </div>
 
-            {/* Contact Form */}
-            <Card>
-              <CardContent className="p-8">
-                <h3 className="font-bold text-xl mb-6">שלח לנו הודעה</h3>
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="space-y-2">
-                      <label htmlFor="name" className="text-sm font-medium">שם מלא</label>
-                      <Input id="name" placeholder="השם שלך" required />
-                    </div>
-                    <div className="space-y-2">
-                      <label htmlFor="phone" className="text-sm font-medium">טלפון</label>
-                      <Input id="phone" placeholder="מספר נייד" required />
-                    </div>
-                  </div>
-                  <div className="space-y-2">
-                    <label htmlFor="email" className="text-sm font-medium">אימייל</label>
-                    <Input id="email" type="email" placeholder="example@mail.com" required />
-                  </div>
-                  <div className="space-y-2">
-                    <label htmlFor="message" className="text-sm font-medium">הודעה</label>
-                    <Textarea id="message" placeholder="כיצד נוכל לעזור?" className="min-h-[120px]" required />
-                  </div>
-                  <Button type="submit" className="w-full">
-                    <Send className="w-4 h-4 ml-2" />
-                    שלח הודעה
-                  </Button>
-                </form>
-              </CardContent>
-            </Card>
+
           </div>
         </div>
       </div>
