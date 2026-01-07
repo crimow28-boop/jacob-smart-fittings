@@ -16,6 +16,7 @@ export default function Header() {
   const cartCount = cart.reduce((acc, item) => acc + item.quantity, 0);
   const location = useLocation();
   const [showLogo, setShowLogo] = useState(true);
+  const [isSheetOpen, setIsSheetOpen] = useState(false);
 
   useEffect(() => {
     const isHome = location.pathname === '/' || location.pathname === '/Home';
@@ -53,7 +54,7 @@ export default function Header() {
       <div className="container mx-auto flex h-16 items-center">
         {/* Right Section (Start) - Nav / Menu */}
         <div className="flex-1 flex items-center justify-start">
-          <Sheet>
+          <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon" className="md:hidden">
                 <Menu className="h-5 w-5" />
@@ -69,10 +70,10 @@ export default function Header() {
                   />
                 </div>
                 <nav className="flex flex-col gap-8 text-right pr-4">
-                  <Link to={createPageUrl('Home')} onClick={() => document.querySelector('[data-radix-collection-item]')?.click()} className="text-xl font-medium hover:text-primary transition-colors">בית</Link>
-                  <Link to={createPageUrl('Category')} className="text-xl font-medium hover:text-primary transition-colors">קטלוג</Link>
-                  <Link to={createPageUrl('About')} className="text-xl font-medium hover:text-primary transition-colors">אודות</Link>
-                  <Link to={createPageUrl('Contact')} className="text-xl font-medium hover:text-primary transition-colors">צור קשר</Link>
+                  <Link to={createPageUrl('Home')} onClick={() => setIsSheetOpen(false)} className="text-xl font-medium hover:text-primary transition-colors">בית</Link>
+                  <Link to={createPageUrl('Category')} onClick={() => setIsSheetOpen(false)} className="text-xl font-medium hover:text-primary transition-colors">קטלוג</Link>
+                  <Link to={createPageUrl('About')} onClick={() => setIsSheetOpen(false)} className="text-xl font-medium hover:text-primary transition-colors">אודות</Link>
+                  <Link to={createPageUrl('Contact')} onClick={() => setIsSheetOpen(false)} className="text-xl font-medium hover:text-primary transition-colors">צור קשר</Link>
                 </nav>
               </div>
             </SheetContent>
