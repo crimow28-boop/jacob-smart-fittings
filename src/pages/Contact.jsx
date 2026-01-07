@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent } from '@/components/ui/card';
+import { motion } from 'framer-motion';
 
 export default function Contact() {
   const handleSubmit = (e) => {
@@ -29,58 +30,69 @@ export default function Contact() {
             />
           </div>
 
-          <div className="grid md:grid-cols-1 gap-8 max-w-2xl mx-auto">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto"
+          >
             {/* Contact Info */}
-            <div className="space-y-6">
-              <Card>
-                <CardContent className="p-6 flex items-start gap-4">
-                  <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center text-primary flex-shrink-0">
-                    <Phone className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-lg mb-1">טלפון</h3>
-                    <p className="text-slate-600">054-7391001</p>
-                    <p className="text-sm text-slate-500 mt-1">א'-ה': 09:00-18:00</p>
-                  </div>
-                </CardContent>
-              </Card>
+            <Card className="hover:shadow-lg transition-all duration-300">
+              <CardContent className="p-8 flex flex-col items-center text-center gap-4">
+                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-2">
+                  <Phone className="w-8 h-8" />
+                </div>
+                <div>
+                  <h3 className="font-bold text-xl mb-2 text-slate-900">טלפון</h3>
+                  <p className="text-slate-600 text-lg dir-ltr">054-7391001</p>
+                  <p className="text-sm text-slate-500 mt-2">א'-ה': 09:00-18:00</p>
+                </div>
+              </CardContent>
+            </Card>
 
-              <Card>
-                <CardContent className="p-6 flex items-start gap-4">
-                  <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center text-primary flex-shrink-0">
-                    <Mail className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-lg mb-1">אימייל</h3>
-                    <p className="text-slate-600">office@k-jacob.co.il</p>
-                    <p className="text-sm text-slate-500 mt-1">מענה תוך 24 שעות</p>
-                  </div>
-                </CardContent>
-              </Card>
+            <Card className="hover:shadow-lg transition-all duration-300">
+              <CardContent className="p-8 flex flex-col items-center text-center gap-4">
+                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-2">
+                  <Mail className="w-8 h-8" />
+                </div>
+                <div>
+                  <h3 className="font-bold text-xl mb-2 text-slate-900">אימייל</h3>
+                  <p className="text-slate-600 text-lg">office@k-jacob.co.il</p>
+                  <p className="text-sm text-slate-500 mt-2">מענה תוך 24 שעות</p>
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
 
-              <div className="flex justify-center gap-6 pt-4">
-                <a 
-                  href="https://www.facebook.com/share/1G7AJoYa4L/?mibextid=wwXIfr" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center hover:bg-blue-600 hover:text-white transition-all"
-                >
-                  <Facebook className="w-6 h-6" />
-                </a>
-                <a 
-                  href="https://www.instagram.com/jacob.fittings?igsh=MTRrYTZpbWFpa2pubw%3D%3D&utm_source=qr" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="w-12 h-12 bg-pink-100 text-pink-600 rounded-full flex items-center justify-center hover:bg-pink-600 hover:text-white transition-all"
-                >
-                  <Instagram className="w-6 h-6" />
-                </a>
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.3, duration: 0.5 }}
+            className="flex justify-center gap-8 mt-12"
+          >
+            <a 
+              href="https://www.facebook.com/share/1G7AJoYa4L/?mibextid=wwXIfr" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="group flex flex-col items-center gap-2"
+            >
+              <div className="w-14 h-14 bg-white border-2 border-slate-100 text-slate-600 rounded-2xl flex items-center justify-center group-hover:bg-[#1877F2] group-hover:text-white group-hover:border-[#1877F2] transition-all duration-300 shadow-sm">
+                <Facebook className="w-7 h-7" />
               </div>
-
-            </div>
-
-
-          </div>
+              <span className="text-sm font-medium text-slate-500 group-hover:text-[#1877F2] transition-colors">Facebook</span>
+            </a>
+            <a 
+              href="https://www.instagram.com/jacob.fittings?igsh=MTRrYTZpbWFpa2pubw%3D%3D&utm_source=qr" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="group flex flex-col items-center gap-2"
+            >
+              <div className="w-14 h-14 bg-white border-2 border-slate-100 text-slate-600 rounded-2xl flex items-center justify-center group-hover:bg-[#E4405F] group-hover:text-white group-hover:border-[#E4405F] transition-all duration-300 shadow-sm">
+                <Instagram className="w-7 h-7" />
+              </div>
+              <span className="text-sm font-medium text-slate-500 group-hover:text-[#E4405F] transition-colors">Instagram</span>
+            </a>
+          </motion.div>
         </div>
       </div>
     </div>
