@@ -213,28 +213,30 @@ export default function Product() {
                   {/* YouTube */}
                   {product.video_url.includes('youtube') ? (
                     <iframe
-                      src={`${product.video_url}?autoplay=1&mute=1&controls=0&loop=1&playlist=${product.video_url.split('/').pop()}&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&fs=0&disablekb=1`}
+                      src={product.video_url.includes('?') ? 
+                        `${product.video_url}&rel=0&modestbranding=1` : 
+                        `${product.video_url}?rel=0&modestbranding=1`
+                      }
                       title={`${product.name} video`}
-                      className="w-full h-full pointer-events-none"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      className="w-full h-full"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowFullScreen
                     />
                   ) : /* Vimeo */
                   product.video_url.includes('vimeo') ? (
                     <iframe
-                      src={`${product.video_url}?background=1&autoplay=1&loop=1&byline=0&title=0`}
+                      src={product.video_url}
                       title={`${product.name} video`}
-                      className="w-full h-full pointer-events-none"
-                      allow="autoplay; fullscreen"
+                      className="w-full h-full"
+                      allow="autoplay; fullscreen; picture-in-picture"
+                      allowFullScreen
                     />
                   ) : (
                     /* Direct Video File */
                     <video 
                       src={product.video_url} 
-                      autoPlay
-                      muted
-                      loop
-                      playsInline
-                      className="w-full h-full object-cover pointer-events-none"
+                      controls
+                      className="w-full h-full object-contain bg-black"
                     />
                   )}
                 </div>
