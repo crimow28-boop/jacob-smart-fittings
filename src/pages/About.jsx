@@ -48,6 +48,22 @@ export default function About() {
               )}
             </div>
           </div>
+          {/* Partners Section */}
+          {aboutContent.sub_logos && aboutContent.sub_logos.length > 0 && (
+            <div className="mt-20 pt-12 border-t border-slate-100">
+              <h2 className="text-2xl font-bold text-center text-slate-400 mb-12">השותפים שלנו</h2>
+              <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-500">
+                {aboutContent.sub_logos.map((logo, index) => (
+                  <img 
+                    key={index}
+                    src={logo} 
+                    alt={`Partner ${index + 1}`}
+                    className="h-12 md:h-16 w-auto object-contain"
+                  />
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </EditableAbout>
 
