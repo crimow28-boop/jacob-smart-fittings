@@ -44,24 +44,13 @@ export default function Contact() {
                   </div>
                   <div>
                     <h3 className="font-bold text-lg mb-1">אימייל</h3>
-                    <p className="text-slate-600">info@store.com</p>
+                    <p className="text-slate-600">Office@k-jacob.co.il</p>
                     <p className="text-sm text-slate-500 mt-1">מענה תוך 24 שעות</p>
                   </div>
                 </CardContent>
               </Card>
 
-              <Card>
-                <CardContent className="p-6 flex items-start gap-4">
-                  <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center text-primary flex-shrink-0">
-                    <MapPin className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-lg mb-1">כתובת</h3>
-                    <p className="text-slate-600">רחוב המסחר 1, תל אביב</p>
-                    <p className="text-sm text-slate-500 mt-1">חנות הדגל</p>
-                  </div>
-                </CardContent>
-              </Card>
+
             </div>
 
             {/* Contact Form */}
