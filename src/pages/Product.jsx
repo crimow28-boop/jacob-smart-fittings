@@ -153,8 +153,8 @@ export default function Product() {
               <div key={index}>
                 <div className="flex items-center justify-between mb-2">
                   <h3 className="text-lg font-bold text-slate-800">מפרט טכני {allSpecs.length > 1 ? index + 1 : ''}</h3>
-                  <Button variant="ghost" size="sm" onClick={() => handleDownload(specUrl, index)}>
-                    <Download className="w-4 h-4 ml-1" />
+                  <Button variant="ghost" onClick={() => handleDownload(specUrl, index)}>
+                    <Download className="w-4 h-4 ml-2" />
                     הורד
                   </Button>
                 </div>
