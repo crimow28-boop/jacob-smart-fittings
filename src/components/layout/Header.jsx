@@ -59,10 +59,22 @@ export default function Header() {
                 <Menu className="h-5 w-5" />
               </Button>
             </SheetTrigger>
-            <SheetContent side="right">
-              <nav className="flex flex-col gap-4 mt-8">
-                <NavLinks />
-              </nav>
+            <SheetContent side="right" className="w-[300px] sm:w-[400px]">
+              <div className="flex flex-col h-full">
+                <div className="flex justify-center mt-8 mb-8">
+                  <img 
+                    src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6940808a9015b91c711aa067/96cc46169_Screenshot2026-01-07112548.png" 
+                    alt="JACOB Smart fittings LTD" 
+                    className="h-20 w-auto object-contain"
+                  />
+                </div>
+                <nav className="flex flex-col gap-8 text-right pr-4">
+                  <Link to={createPageUrl('Home')} onClick={() => document.querySelector('[data-radix-collection-item]')?.click()} className="text-xl font-medium hover:text-primary transition-colors">בית</Link>
+                  <Link to={createPageUrl('Category')} className="text-xl font-medium hover:text-primary transition-colors">קטלוג</Link>
+                  <Link to={createPageUrl('About')} className="text-xl font-medium hover:text-primary transition-colors">אודות</Link>
+                  <Link to={createPageUrl('Contact')} className="text-xl font-medium hover:text-primary transition-colors">צור קשר</Link>
+                </nav>
+              </div>
             </SheetContent>
           </Sheet>
 
