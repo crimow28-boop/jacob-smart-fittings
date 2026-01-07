@@ -30,8 +30,8 @@ export default function Home() {
         />
       </div>
       <FeaturedProducts />
-      <CategoryGrid />
       <PartnerLogos />
+      <CategoryGrid />
     </div>
   );
 }
