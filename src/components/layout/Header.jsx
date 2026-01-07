@@ -19,9 +19,9 @@ export default function Header() {
   const [isSheetOpen, setIsSheetOpen] = useState(false);
 
   useEffect(() => {
-    const isHome = location.pathname === '/' || location.pathname === '/Home';
+    const shouldHideLogoInitially = location.pathname === '/' || location.pathname === '/Home' || location.pathname === '/About';
     
-    if (isHome) {
+    if (shouldHideLogoInitially) {
       const handleScroll = () => {
         if (window.scrollY > 150) {
           setShowLogo(true);
