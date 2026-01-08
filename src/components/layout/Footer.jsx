@@ -6,7 +6,7 @@ import { createPageUrl } from '@/utils';
 export default function Footer() {
   return (
     <footer className="bg-slate-50 border-t">
-      <div className="container py-8 px-4 md:px-6 flex flex-col items-center gap-4">
+      <div className="container mx-auto py-8 px-4 md:px-6 flex flex-col items-center gap-4 text-center">
         <div className="flex gap-4">
           <a href="https://www.facebook.com/share/1G7AJoYa4L/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer">
             <ButtonIcon icon={<Facebook className="w-5 h-5" />} />
