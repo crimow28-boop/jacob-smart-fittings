@@ -203,7 +203,7 @@ export default function Product() {
 
             {/* Description */}
             <div className="prose prose-slate max-w-none mb-8">
-              <p className="text-slate-600 leading-relaxed">{product.description}</p>
+              <p className="text-slate-600 leading-relaxed whitespace-pre-wrap">{product.description}</p>
             </div>
 
             {/* Video Section */}
