@@ -110,6 +110,7 @@ export default function ProductEditorDialog({ open, onOpenChange, product }) {
                 <Input 
                   value={formData.name} 
                   onChange={(e) => handleChange('name', e.target.value)}
+                  className="text-right"
                 />
               </div>
               <div className="space-y-2">
@@ -118,6 +119,7 @@ export default function ProductEditorDialog({ open, onOpenChange, product }) {
                   type="number"
                   value={formData.price} 
                   onChange={(e) => handleChange('price', e.target.value)}
+                  className="text-right"
                 />
               </div>
             </div>
@@ -128,6 +130,7 @@ export default function ProductEditorDialog({ open, onOpenChange, product }) {
                  type="number"
                  value={formData.order} 
                  onChange={(e) => handleChange('order', e.target.value)}
+                 className="text-right"
                />
             </div>
 
@@ -137,6 +140,7 @@ export default function ProductEditorDialog({ open, onOpenChange, product }) {
                <Input 
                  value={formData.short_description} 
                  onChange={(e) => handleChange('short_description', e.target.value)}
+                 className="text-right"
                />
             </div>
 
@@ -145,7 +149,7 @@ export default function ProductEditorDialog({ open, onOpenChange, product }) {
                <Textarea 
                  value={formData.features.join('\n')} 
                  onChange={(e) => handleChange('features', e.target.value.split('\n'))}
-                 className="h-32"
+                 className="h-32 text-right"
                  placeholder="הכנס תכונות, כל אחת בשורה חדשה..."
                />
             </div>
@@ -155,7 +159,7 @@ export default function ProductEditorDialog({ open, onOpenChange, product }) {
                <Textarea 
                  value={formData.description} 
                  onChange={(e) => handleChange('description', e.target.value)}
-                 className="h-32"
+                 className="h-32 text-right"
                />
             </div>
 
@@ -210,6 +214,7 @@ export default function ProductEditorDialog({ open, onOpenChange, product }) {
                <Input 
                  value={formData.video_url} 
                  onChange={(e) => handleChange('video_url', e.target.value)}
+                 className="text-right"
                />
             </div>
 
