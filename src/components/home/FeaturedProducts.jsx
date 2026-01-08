@@ -11,8 +11,8 @@ export default function FeaturedProducts() {
   const { data: products, isLoading } = useQuery({
     queryKey: ['featured-products'],
     queryFn: async () => {
-      // Fetch all products
-      return await base44.entities.Product.list();
+      // Fetch all products sorted by order
+      return await base44.entities.Product.list('order');
     },
     initialData: []
   });
