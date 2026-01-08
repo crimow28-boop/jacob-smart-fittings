@@ -44,7 +44,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <h3 className="font-bold text-xl mb-2 text-slate-900">טלפון</h3>
-                  <p className="text-slate-600 text-lg dir-ltr">054-7391001</p>
+                  <a href="tel:0547391001" className="text-slate-600 text-lg dir-ltr hover:text-primary transition-colors">054-7391001</a>
                   <p className="text-sm text-slate-500 mt-2">א'-ה': 09:00-18:00</p>
                 </div>
               </CardContent>
@@ -57,7 +57,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <h3 className="font-bold text-xl mb-2 text-slate-900">אימייל</h3>
-                  <p className="text-slate-600 text-lg">office@k-jacob.co.il</p>
+                  <a href="mailto:office@k-jacob.co.il" className="text-slate-600 text-lg hover:text-primary transition-colors">office@k-jacob.co.il</a>
                   <p className="text-sm text-slate-500 mt-2">מענה תוך 24 שעות</p>
                 </div>
               </CardContent>
