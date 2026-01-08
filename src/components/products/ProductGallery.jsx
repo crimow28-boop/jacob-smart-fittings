@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
-export default function ProductGallery({ images }) {
+import { Maximize2 } from 'lucide-react';
+
+export default function ProductGallery({ images, onImageClick }) {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   // Reset index when images change (e.g. switching products)
@@ -43,12 +45,19 @@ export default function ProductGallery({ images }) {
 
   return (
     <div className="space-y-4">
-      <div className="aspect-square bg-white rounded-none overflow-hidden border border-slate-200 relative group touch-pan-y">
+      <div 
+        className="aspect-square bg-white rounded-none overflow-hidden border border-slate-200 relative group touch-pan-y cursor-pointer"
+        onClick={() => onImageClick && onImageClick(images[currentIndex])}
+      >
         <img 
           src={images[currentIndex]} 
           alt="Product Main" 
           className="w-full h-full object-contain transition-opacity duration-300"
         />
+
+        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/5 pointer-events-none">
+          <Maximize2 className="w-12 h-12 text-slate-800/50 drop-shadow-sm" />
+        </div>
         
         {images.length > 1 && (
           <>

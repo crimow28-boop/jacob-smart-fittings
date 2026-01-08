@@ -146,7 +146,11 @@ export default function Product() {
           {/* Gallery */}
           <div className="space-y-4 min-w-0">
             <EditableProduct product={product}>
-              <ProductGallery key={product.id} images={product.images} />
+              <ProductGallery 
+                key={product.id} 
+                images={product.images} 
+                onImageClick={(img) => setLightboxImage(img)}
+              />
             </EditableProduct>
             
             {allSpecs.map((specUrl, index) => (
@@ -322,19 +326,19 @@ export default function Product() {
       </div>
 
       <Dialog open={!!lightboxImage} onOpenChange={() => setLightboxImage(null)}>
-        <DialogContent className="max-w-[90vw] max-h-[90vh] w-full h-full p-0 bg-white border-none shadow-2xl">
+        <DialogContent className="max-w-screen w-screen h-screen p-0 bg-black/95 border-none shadow-none duration-200">
           <div className="relative w-full h-full flex items-center justify-center p-4">
             <button 
                 onClick={() => setLightboxImage(null)}
-                className="absolute top-4 right-4 z-50 p-2 bg-stone-100 hover:bg-stone-200 rounded-full text-stone-600 transition-colors border border-stone-200"
+                className="absolute top-4 right-4 z-50 p-2 bg-white/10 hover:bg-white/20 rounded-full text-white transition-colors"
             >
-                <X className="w-6 h-6" />
+                <X className="w-8 h-8" />
             </button>
             {lightboxImage && (
                 <img 
                     src={lightboxImage} 
-                    alt="Spec Preview" 
-                    className="max-w-full max-h-full object-contain"
+                    alt="Preview" 
+                    className="w-full h-full object-contain"
                 />
             )}
           </div>
