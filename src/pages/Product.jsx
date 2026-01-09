@@ -20,7 +20,8 @@ import {
   Download,
   Edit2,
   X,
-  Maximize2
+  Maximize2,
+  Package
 } from 'lucide-react';
 import { useCart } from '../components/cart/CartContext';
 import ProductGallery from '../components/products/ProductGallery';
@@ -307,16 +308,16 @@ export default function Product() {
                   </div>
                   <div className="text-xs lg:text-sm">
                     <div className="font-medium text-slate-800">משלוח מהיר</div>
-                    <div className="text-slate-500">תוך 48 שעות</div>
+                    <div className="text-slate-500">עד בית הלקוח</div>
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
                   <div className="w-8 h-8 lg:w-10 lg:h-10 bg-slate-100 rounded-full flex items-center justify-center flex-shrink-0">
-                    <Shield className="w-4 h-4 lg:w-5 lg:h-5 text-slate-600" />
+                    <Package className="w-4 h-4 lg:w-5 lg:h-5 text-slate-600" />
                   </div>
                   <div className="text-xs lg:text-sm">
-                    <div className="font-medium text-slate-800">אחריות לשנתיים</div>
-                    <div className="text-slate-500">כיסוי מלא</div>
+                    <div className="font-medium text-slate-800">מלאי זמין</div>
+                    <div className="text-slate-500">לפי דרישה</div>
                   </div>
                 </div>
               </div>
