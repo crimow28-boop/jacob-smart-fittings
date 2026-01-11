@@ -4,8 +4,9 @@ import { base44 } from '@/api/base44Client';
 import ProductCard from '../components/products/ProductCard';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { Search, SlidersHorizontal } from 'lucide-react';
+import { Search, SlidersHorizontal, Plus } from 'lucide-react';
 import { Checkbox } from '@/components/ui/checkbox';
+import ProductEditorDialog from '../components/admin/ProductEditorDialog';
 import { Label } from '@/components/ui/label';
 import { Separator } from '@/components/ui/separator';
 import { useAdmin } from '../components/admin/AdminContext';
@@ -18,6 +19,7 @@ export default function Category() {
   
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState(initialCategoryId || 'all');
+  const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
 
   const handleSearchChange = (e) => {
     const value = e.target.value;
@@ -71,9 +73,22 @@ export default function Category() {
 
   return (
     <div className="min-h-screen bg-slate-50 py-8">
+      <ProductEditorDialog 
+        open={isCreateDialogOpen} 
+        onOpenChange={setIsCreateDialogOpen} 
+        product={null} 
+      />
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
-          <h1 className="text-3xl font-bold text-slate-900">קטלוג מוצרים</h1>
+          <div className="flex items-center gap-4">
+            <h1 className="text-3xl font-bold text-slate-900">קטלוג מוצרים</h1>
+            {isEditMode && (
+              <Button onClick={() => setIsCreateDialogOpen(true)} className="bg-primary hover:bg-primary-hover">
+                <Plus className="w-4 h-4 ml-2" />
+                הוסף מוצר חדש
+              </Button>
+            )}
+          </div>
           
           <div className="flex gap-4 w-full md:w-auto">
              <div className="relative w-full md:w-80">

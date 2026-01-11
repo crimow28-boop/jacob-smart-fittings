@@ -10,6 +10,7 @@ import { base44 } from '@/api/base44Client';
 import { toast } from 'sonner';
 import { X, FileText } from 'lucide-react';
 import FileUploader from './FileUploader';
+import { kebabCase } from 'lodash';
 
 export default function ProductEditorDialog({ open, onOpenChange, product }) {
   const queryClient = useQueryClient();
@@ -40,8 +41,42 @@ export default function ProductEditorDialog({ open, onOpenChange, product }) {
         in_stock: product.in_stock ?? true,
         features: product.features || [],
       });
+    } else {
+      // Reset for new product
+      setFormData({
+        name: '',
+        description: '',
+        short_description: '',
+        price: 0,
+        order: 0,
+        images: [],
+        specification_urls: [],
+        video_url: '',
+        in_stock: true,
+        features: [],
+      });
     }
-  }, [product]);
+  }, [product, open]);
+
+  const createMutation = useMutation({
+    mutationFn: async (data) => {
+      const formattedData = {
+        ...data,
+        price: Number(data.price),
+        order: Number(data.order || 0),
+        slug: kebabCase(data.name) || `product-${Date.now()}`,
+      };
+      return await base44.entities.Product.create(formattedData);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries(['products']);
+      toast.success('המוצר נוצר בהצלחה');
+      onOpenChange(false);
+    },
+    onError: () => {
+      toast.error('שגיאה ביצירת המוצר');
+    }
+  });
 
   const updateMutation = useMutation({
     mutationFn: async (data) => {
@@ -53,7 +88,7 @@ export default function ProductEditorDialog({ open, onOpenChange, product }) {
       return await base44.entities.Product.update(product.id, formattedData);
     },
     onSuccess: () => {
-      queryClient.invalidateQueries(['product', product.id]);
+      queryClient.invalidateQueries(['product', product?.id]);
       queryClient.invalidateQueries(['products']);
       toast.success('המוצר עודכן בהצלחה');
       onOpenChange(false);
@@ -65,7 +100,11 @@ export default function ProductEditorDialog({ open, onOpenChange, product }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    updateMutation.mutate(formData);
+    if (product) {
+      updateMutation.mutate(formData);
+    } else {
+      createMutation.mutate(formData);
+    }
   };
 
   const handleChange = (field, value) => {
@@ -98,7 +137,7 @@ export default function ProductEditorDialog({ open, onOpenChange, product }) {
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="w-[95vw] max-w-2xl max-h-[90vh] overflow-y-auto p-4 sm:p-6">
         <DialogHeader>
-          <DialogTitle>עריכת מוצר: {product?.name}</DialogTitle>
+          <DialogTitle>{product ? `עריכת מוצר: ${product.name}` : 'הוספת מוצר חדש'}</DialogTitle>
         </DialogHeader>
 
         <form onSubmit={handleSubmit} className="space-y-6">
@@ -229,8 +268,8 @@ export default function ProductEditorDialog({ open, onOpenChange, product }) {
 
           <DialogFooter>
              <Button type="button" variant="outline" onClick={() => onOpenChange(false)}>ביטול</Button>
-             <Button type="submit" disabled={updateMutation.isPending}>
-               {updateMutation.isPending ? 'שומר...' : 'שמור שינויים'}
+             <Button type="submit" disabled={updateMutation.isPending || createMutation.isPending}>
+               {updateMutation.isPending || createMutation.isPending ? 'שומר...' : (product ? 'שמור שינויים' : 'צור מוצר')}
              </Button>
           </DialogFooter>
         </form>
