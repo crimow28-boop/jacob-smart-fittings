@@ -215,40 +215,47 @@ export default function Product() {
             {product.video_url && (
               <div className="mb-6">
                 <div className="aspect-video bg-slate-100 rounded-none overflow-hidden border border-slate-200">
-                  {/* YouTube */}
-                  {product.video_url.includes('youtube') ? (
-                    <iframe
-                      src={product.video_url.includes('?') ? 
-                        `${product.video_url}&rel=0&modestbranding=1&autoplay=1&mute=1` : 
-                        `${product.video_url}?rel=0&modestbranding=1&autoplay=1&mute=1`
+                  {(() => {
+                    let videoSrc = product.video_url;
+                    let isYoutube = videoSrc.includes('youtube') || videoSrc.includes('youtu.be');
+                    let isVimeo = videoSrc.includes('vimeo');
+                    
+                    if (isYoutube) {
+                      let videoId = null;
+                      if (videoSrc.includes('youtu.be/')) videoId = videoSrc.split('youtu.be/')[1].split(/[?#]/)[0];
+                      else if (videoSrc.includes('v=')) videoId = videoSrc.split('v=')[1].split(/[&?#]/)[0];
+                      else if (videoSrc.includes('/embed/')) videoId = videoSrc.split('/embed/')[1].split(/[?#]/)[0];
+                      
+                      if (videoId) {
+                        videoSrc = `https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1`;
                       }
-                      title={`${product.name} video`}
-                      className="w-full h-full"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                      allowFullScreen
-                    />
-                  ) : /* Vimeo */
-                  product.video_url.includes('vimeo') ? (
-                    <iframe
-                      src={product.video_url.includes('?') ?
-                        `${product.video_url}&autoplay=1&muted=1` :
-                        `${product.video_url}?autoplay=1&muted=1`
-                      }
-                      title={`${product.name} video`}
-                      className="w-full h-full"
-                      allow="autoplay; fullscreen; picture-in-picture"
-                      allowFullScreen
-                    />
-                  ) : (
-                    /* Direct Video File */
-                    <video 
-                      src={product.video_url} 
-                      controls
-                      autoPlay
-                      muted
-                      className="w-full h-full object-contain bg-black"
-                    />
-                  )}
+                    } else if (isVimeo && !videoSrc.includes('player.vimeo.com')) {
+                         const match = videoSrc.match(/vimeo\.com\/(\d+)/);
+                         if (match && match[1]) {
+                             videoSrc = `https://player.vimeo.com/video/${match[1]}`;
+                         }
+                    }
+
+                    if (isYoutube || isVimeo) {
+                         return (
+                            <iframe
+                                src={videoSrc}
+                                title={`${product.name} video`}
+                                className="w-full h-full"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                allowFullScreen
+                            />
+                         );
+                    }
+                    
+                    return (
+                        <video 
+                          src={product.video_url} 
+                          controls
+                          className="w-full h-full object-contain bg-black"
+                        />
+                    );
+                  })()}
                 </div>
               </div>
             )}
