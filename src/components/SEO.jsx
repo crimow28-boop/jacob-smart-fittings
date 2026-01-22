@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 
-export default function SEO({ title, description }) {
+export default function SEO({ title, description, keywords }) {
   useEffect(() => {
     // Update title
     if (title) {
-        document.title = `${title} | Jacob Smart Fittings`;
+        document.title = `${title} | יעקב פרזול חכם (Jacob Smart Fittings)`;
     }
 
     // Update meta description
@@ -17,7 +17,18 @@ export default function SEO({ title, description }) {
         }
         metaDescription.content = description;
     }
-  }, [title, description]);
+
+    // Update meta keywords
+    if (keywords) {
+        let metaKeywords = document.querySelector('meta[name="keywords"]');
+        if (!metaKeywords) {
+            metaKeywords = document.createElement('meta');
+            metaKeywords.name = "keywords";
+            document.head.appendChild(metaKeywords);
+        }
+        metaKeywords.content = keywords;
+    }
+  }, [title, description, keywords]);
 
   return null;
 }
