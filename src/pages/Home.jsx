@@ -7,6 +7,7 @@ import FeaturedProducts from '../components/home/FeaturedProducts';
 import TrustSection from '../components/home/TrustSection';
 import PartnerLogos from '../components/partners/PartnerLogos';
 import EditableHero from '../components/admin/EditableHero';
+import SEO from '../components/SEO';
 
 export default function Home() {
   const { data: siteContent } = useQuery({
@@ -20,6 +21,10 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-white">
+      <SEO 
+        title="פתרונות פרזול מתקדמים" 
+        description="יעקב פרזול חכם מתמחים בייצור, יבוא ושיווק פתרונות פרזול איכותיים לנגרים, מעצבים ולקוחות פרטיים. קטלוג עשיר, משלוחים לכל הארץ ושירות מקצועי."
+      />
       {/* Hero Section removed */}
       {/* Trust Section removed */}
       <div className="container mx-auto px-4 md:px-6 pt-12 pb-4 text-center">

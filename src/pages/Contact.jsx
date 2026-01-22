@@ -5,6 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent } from '@/components/ui/card';
 import { motion } from 'framer-motion';
+import SEO from '../components/SEO';
 
 export default function Contact() {
   const handleSubmit = (e) => {
@@ -15,6 +16,10 @@ export default function Contact() {
 
   return (
     <div className="min-h-[calc(100vh-4rem)] bg-gradient-to-b from-slate-50 to-white flex items-center justify-center py-12">
+      <SEO 
+        title="צור קשר" 
+        description="צרו קשר עם יעקב פרזול חכם לכל שאלה או התייעצות. זמינים בטלפון, בוואטסאפ ובמייל."
+      />
       <div className="container px-4 md:px-6 w-full">
         <div className="max-w-4xl mx-auto w-full">
           <div className="text-center mb-12">

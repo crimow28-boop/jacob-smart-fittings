@@ -5,6 +5,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { CheckCircle2, Package, Truck, Wrench, Settings } from 'lucide-react';
 import { motion } from 'framer-motion';
 import EditableAbout from '../components/about/EditableAbout';
+import SEO from '../components/SEO';
 
 export default function About() {
   const { data: aboutContent } = useQuery({
@@ -18,6 +19,10 @@ export default function About() {
 
   return (
     <div className="min-h-screen bg-white">
+      <SEO 
+        title="אודות" 
+        description="למדו עוד על יעקב פרזול חכם - מובילים בחדשנות בעולם הפרזול, איכות, אמינות ושירות ללא פשרות."
+      />
       <EditableAbout content={aboutContent}>
         {/* 1. Hero / Large Logo Section */}
         <div className="relative overflow-hidden bg-gradient-to-b from-slate-50 to-white pb-12 pt-16">

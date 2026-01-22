@@ -11,6 +11,7 @@ import { Label } from '@/components/ui/label';
 import { Separator } from '@/components/ui/separator';
 import { useAdmin } from '../components/admin/AdminContext';
 import { toast } from 'sonner';
+import SEO from '../components/SEO';
 
 export default function Category() {
   const urlParams = new URLSearchParams(window.location.search);
@@ -73,6 +74,10 @@ export default function Category() {
 
   return (
     <div className="min-h-screen bg-slate-50 py-8">
+      <SEO 
+        title="קטלוג מוצרים" 
+        description="צפו בקטלוג המוצרים המלא של יעקב פרזול חכם. מגוון רחב של פתרונות פרזול לכל מטרה."
+      />
       <ProductEditorDialog 
         open={isCreateDialogOpen} 
         onOpenChange={setIsCreateDialogOpen} 

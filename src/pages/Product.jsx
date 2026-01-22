@@ -27,6 +27,7 @@ import { useCart } from '../components/cart/CartContext';
 import ProductGallery from '../components/products/ProductGallery';
 import EditableProduct from '../components/admin/EditableProduct';
 import { useAdmin } from '../components/admin/AdminContext';
+import SEO from '../components/SEO';
 
 const WHATSAPP_NUMBER = '972547391001';
 
@@ -129,6 +130,10 @@ export default function Product() {
 
   return (
     <div className="min-h-screen bg-slate-50">
+      <SEO 
+        title={product.name} 
+        description={product.short_description || product.description?.substring(0, 150)}
+      />
       {/* Breadcrumb */}
       <div className="bg-slate-100 border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
