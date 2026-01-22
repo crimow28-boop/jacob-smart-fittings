@@ -71,6 +71,15 @@ export default function Layout({ children }) {
     window.scrollTo(0, 0);
   }, [location.pathname]);
 
+  useEffect(() => {
+    if (!document.querySelector('meta[name="google-site-verification"]')) {
+      const meta = document.createElement('meta');
+      meta.name = "google-site-verification";
+      meta.content = "lYRvW6Iyb2VEF7zN1F-9GoYK4Msr-o31VnFHCwSEuPw";
+      document.head.appendChild(meta);
+    }
+  }, []);
+
   return (
     <AdminProvider>
       <CartProvider>
