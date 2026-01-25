@@ -21,8 +21,8 @@ export default function About() {
     <div className="min-h-screen bg-white">
       <SEO 
         title="אודות" 
-        description="אודות יעקב פרזול חכם (Jacob Smart Fittings) - מובילים בחדשנות בעולם הפרזול. אנו מספקים פתרונות פרזול איכותיים לנגרים ולקוחות פרטיים עם שירות ללא פשרות."
-        keywords="אודות יעקב פרזול, מי אנחנו פרזול, גייקוב פרזול חכם אודות"
+        description="אודות ג׳ייקוב פרזול חכם (Jacob Smart Fittings) - מובילים בחדשנות בעולם הפרזול. אנו מספקים פתרונות פרזול איכותיים לנגרים ולקוחות פרטיים עם שירות ללא פשרות."
+        keywords="אודות ג׳ייקוב פרזול חכם, מי אנחנו פרזול"
       />
       <EditableAbout content={aboutContent}>
         {/* 1. Hero / Large Logo Section */}

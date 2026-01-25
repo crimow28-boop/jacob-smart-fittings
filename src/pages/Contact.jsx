@@ -18,7 +18,7 @@ export default function Contact() {
     <div className="min-h-[calc(100vh-4rem)] bg-gradient-to-b from-slate-50 to-white flex items-center justify-center py-12">
       <SEO 
         title="צור קשר" 
-        description="צרו קשר עם יעקב פרזול חכם לכל שאלה או התייעצות. זמינים בטלפון, בוואטסאפ ובמייל."
+        description="צרו קשר עם ג׳ייקוב פרזול חכם לכל שאלה או התייעצות. זמינים בטלפון, בוואטסאפ ובמייל."
       />
       <div className="container px-4 md:px-6 w-full">
         <div className="max-w-4xl mx-auto w-full">

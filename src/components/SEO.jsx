@@ -4,7 +4,7 @@ export default function SEO({ title, description, keywords }) {
   useEffect(() => {
     // Update title
     if (title) {
-        document.title = `${title} | יעקב פרזול חכם (Jacob Smart Fittings)`;
+        document.title = `${title} | ג׳ייקוב פרזול חכם (Jacob Smart Fittings)`;
     }
 
     // Update meta description

@@ -76,7 +76,7 @@ export default function Category() {
     <div className="min-h-screen bg-slate-50 py-8">
       <SEO 
         title="קטלוג מוצרים" 
-        description="צפו בקטלוג המוצרים המלא של יעקב פרזול חכם. מגוון רחב של פתרונות פרזול לכל מטרה."
+        description="צפו בקטלוג המוצרים המלא של ג׳ייקוב פרזול חכם. מגוון רחב של פתרונות פרזול לכל מטרה."
       />
       <ProductEditorDialog 
         open={isCreateDialogOpen} 
