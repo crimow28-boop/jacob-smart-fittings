@@ -22,7 +22,6 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-white">
       <SEO 
-        title="דף הבית" 
         description="ג׳ייקוב פרזול חכם - המרכז המוביל לפתרונות פרזול מתקדמים לנגרים ולבית. קטלוג עשיר של מוצרי פרזול, ידיות, מסילות, צירים ועוד. משלוחים לכל הארץ."
         keywords="ג׳ייקוב פרזול חכם, פרזול, נגרות, ידיות, מסילות, צירים, פרזול לנגרים, Jacob Smart Fittings"
       />

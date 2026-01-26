@@ -3,8 +3,11 @@ import React, { useEffect } from 'react';
 export default function SEO({ title, description, keywords }) {
   useEffect(() => {
     // Update title
+    const brandName = "ג׳ייקוב פרזול חכם | Jacob Smart Fittings";
     if (title) {
-        document.title = `${title} | ג׳ייקוב פרזול חכם (Jacob Smart Fittings)`;
+        document.title = `${title} | ${brandName}`;
+    } else {
+        document.title = brandName;
     }
 
     // Update meta description
