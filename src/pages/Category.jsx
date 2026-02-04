@@ -10,6 +10,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Search, SlidersHorizontal, Plus, ArrowRight } from 'lucide-react';
 import { Checkbox } from '@/components/ui/checkbox';
 import ProductEditorDialog from '../components/admin/ProductEditorDialog';
+import CategoryManagerDialog from '../components/admin/CategoryManagerDialog';
 import { Label } from '@/components/ui/label';
 import { Separator } from '@/components/ui/separator';
 import { useAdmin } from '../components/admin/AdminContext';
@@ -25,6 +26,7 @@ export default function Category() {
   const [selectedCategory, setSelectedCategory] = useState(initialCategoryId || 'all');
   const [viewMode, setViewMode] = useState(initialCategoryId ? 'list' : 'grid');
   const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
+  const [isCategoryManagerOpen, setIsCategoryManagerOpen] = useState(false);
 
   useEffect(() => {
     if (searchTerm) {
@@ -98,15 +100,25 @@ export default function Category() {
         onOpenChange={setIsCreateDialogOpen} 
         product={null} 
       />
+      <CategoryManagerDialog 
+        open={isCategoryManagerOpen}
+        onOpenChange={setIsCategoryManagerOpen}
+      />
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
           <div className="flex items-center gap-4">
             <h1 className="text-3xl font-bold text-slate-900">קטלוג מוצרים</h1>
             {isEditMode && (
-              <Button onClick={() => setIsCreateDialogOpen(true)} className="bg-primary hover:bg-primary-hover">
-                <Plus className="w-4 h-4 ml-2" />
-                הוסף מוצר חדש
-              </Button>
+              <div className="flex gap-2">
+                <Button onClick={() => setIsCreateDialogOpen(true)} className="bg-primary hover:bg-primary-hover">
+                  <Plus className="w-4 h-4 ml-2" />
+                  הוסף מוצר
+                </Button>
+                <Button onClick={() => setIsCategoryManagerOpen(true)} variant="outline" className="border-primary text-primary hover:bg-primary/5">
+                  <SlidersHorizontal className="w-4 h-4 ml-2" />
+                  ניהול קטגוריות
+                </Button>
+              </div>
             )}
           </div>
           

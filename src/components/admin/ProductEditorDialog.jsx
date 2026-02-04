@@ -5,7 +5,8 @@ import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { Switch } from '@/components/ui/switch';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { Checkbox } from '@/components/ui/checkbox';
 import { base44 } from '@/api/base44Client';
 import { toast } from 'sonner';
 import { X, FileText } from 'lucide-react';
@@ -25,6 +26,14 @@ export default function ProductEditorDialog({ open, onOpenChange, product }) {
     video_url: '',
     in_stock: true,
     features: [],
+    category_ids: [],
+  });
+
+  const { data: categories } = useQuery({
+    queryKey: ['categories-select'],
+    queryFn: async () => await base44.entities.Category.list({ sort: { order: 1 } }),
+    initialData: [],
+    enabled: open
   });
 
   useEffect(() => {
@@ -40,6 +49,7 @@ export default function ProductEditorDialog({ open, onOpenChange, product }) {
         video_url: product.video_url || '',
         in_stock: product.in_stock ?? true,
         features: product.features || [],
+        category_ids: product.category_ids || [],
       });
     } else {
       // Reset for new product
@@ -54,6 +64,7 @@ export default function ProductEditorDialog({ open, onOpenChange, product }) {
         video_url: '',
         in_stock: true,
         features: [],
+        category_ids: [],
       });
     }
   }, [product, open]);
@@ -171,6 +182,37 @@ export default function ProductEditorDialog({ open, onOpenChange, product }) {
                  onChange={(e) => handleChange('order', e.target.value)}
                  className="text-right"
                />
+            </div>
+
+            {/* Categories */}
+            <div className="space-y-3 p-4 bg-slate-50 rounded-lg border border-slate-100">
+               <Label className="text-base font-semibold">קטגוריות</Label>
+               <div className="grid grid-cols-2 gap-4 max-h-40 overflow-y-auto pr-2">
+                 {categories.map((category) => (
+                   <div key={category.id} className="flex items-center space-x-2 space-x-reverse">
+                     <Checkbox 
+                       id={`cat-${category.id}`}
+                       checked={formData.category_ids.includes(category.id)}
+                       onCheckedChange={(checked) => {
+                         if (checked) {
+                           setFormData(prev => ({ ...prev, category_ids: [...prev.category_ids, category.id] }));
+                         } else {
+                           setFormData(prev => ({ ...prev, category_ids: prev.category_ids.filter(id => id !== category.id) }));
+                         }
+                       }}
+                     />
+                     <label 
+                       htmlFor={`cat-${category.id}`}
+                       className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer"
+                     >
+                       {category.name}
+                     </label>
+                   </div>
+                 ))}
+                 {categories.length === 0 && (
+                   <p className="text-sm text-slate-500 col-span-2">אין קטגוריות זמינות. צור קטגוריות דרך מסך ניהול הקטגוריות.</p>
+                 )}
+               </div>
             </div>
 
             {/* Descriptions */}
