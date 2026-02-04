@@ -23,7 +23,17 @@ export default function Category() {
   
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState(initialCategoryId || 'all');
+  const [viewMode, setViewMode] = useState(initialCategoryId ? 'list' : 'grid');
   const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
+
+  useEffect(() => {
+    if (searchTerm) {
+      setViewMode('list');
+    } else if (selectedCategory === 'all' && !initialCategoryId) {
+      // If we cleared search and are in 'all' category, go back to grid
+      setViewMode('grid');
+    }
+  }, [searchTerm]);
 
   const handleSearchChange = (e) => {
     const value = e.target.value;
@@ -57,9 +67,6 @@ export default function Category() {
     return matchesSearch && matchesCategory;
   });
   
-  // Determine view mode
-  const showCategoryGrid = selectedCategory === 'all' && searchTerm === '';
-
   // Get current category name
   const currentCategoryName = categories.find(c => c.id === selectedCategory)?.name;
 
@@ -118,29 +125,67 @@ export default function Category() {
 
         <div className="flex flex-col gap-8">
           
-          {selectedCategory !== 'all' && (
+          {viewMode === 'list' && (
              <div className="flex items-center gap-2 mb-2">
                 <Button 
                   variant="ghost" 
                   className="gap-1 pl-0 hover:bg-transparent hover:text-primary"
-                  onClick={() => setSelectedCategory('all')}
+                  onClick={() => {
+                    setSelectedCategory('all');
+                    setViewMode('grid');
+                    setSearchTerm('');
+                  }}
                 >
                   <ArrowRight className="w-4 h-4" />
                   חזרה לקטגוריות
                 </Button>
-                <Separator orientation="vertical" className="h-4" />
-                <span className="font-medium text-slate-900">{currentCategoryName}</span>
+                {selectedCategory !== 'all' && (
+                  <>
+                    <Separator orientation="vertical" className="h-4" />
+                    <span className="font-medium text-slate-900">{currentCategoryName}</span>
+                  </>
+                )}
+                {selectedCategory === 'all' && searchTerm === '' && (
+                  <>
+                    <Separator orientation="vertical" className="h-4" />
+                    <span className="font-medium text-slate-900">כל המוצרים</span>
+                  </>
+                )}
              </div>
           )}
 
           {/* Category Grid View */}
-          {showCategoryGrid ? (
+          {viewMode === 'grid' ? (
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+              {/* All Products Card */}
+              <Card 
+                className="h-full hover:shadow-lg transition-all cursor-pointer border-slate-200 rounded-lg group"
+                onClick={() => {
+                  setSelectedCategory('all');
+                  setViewMode('list');
+                }}
+              >
+                <CardContent className="p-6 flex flex-col items-center justify-center text-center h-full min-h-[160px] gap-4">
+                  <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center text-primary font-bold text-2xl group-hover:bg-primary group-hover:text-white transition-colors duration-300">
+                    <Search className="w-8 h-8" />
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-lg text-slate-900 group-hover:text-primary transition-colors">כל המוצרים</h3>
+                    <p className="text-sm text-slate-500 mt-1">
+                      {products.length} מוצרים
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
+
               {categories.map((category) => (
                 <Card 
                   key={category.id} 
                   className="h-full hover:shadow-lg transition-all cursor-pointer border-slate-200 rounded-lg group"
-                  onClick={() => setSelectedCategory(category.id)}
+                  onClick={() => {
+                    setSelectedCategory(category.id);
+                    setViewMode('list');
+                  }}
                 >
                   <CardContent className="p-6 flex flex-col items-center justify-center text-center h-full min-h-[160px] gap-4">
                     <div className="w-16 h-16 bg-slate-50 rounded-full flex items-center justify-center text-slate-700 font-bold text-2xl group-hover:bg-primary group-hover:text-white transition-colors duration-300">
@@ -162,7 +207,11 @@ export default function Category() {
               {filteredProducts.length === 0 ? (
                 <div className="text-center py-20 bg-white rounded-lg border border-slate-200">
                   <p className="text-lg text-slate-500">לא נמצאו מוצרים התואמים את החיפוש שלך.</p>
-                  <Button variant="link" onClick={() => { setSearchTerm(''); setSelectedCategory('all'); }}>
+                  <Button variant="link" onClick={() => { 
+                    setSearchTerm(''); 
+                    setSelectedCategory('all'); 
+                    if (!searchTerm) setViewMode('grid'); // Go back to grid if we were just browsing empty category
+                  }}>
                     נקה סינון
                   </Button>
                 </div>
