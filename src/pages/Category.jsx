@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
+import { Link, useNavigate } from 'react-router-dom';
 import { base44 } from '@/api/base44Client';
+import { createPageUrl } from '@/utils';
 import ProductCard from '../components/products/ProductCard';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { Search, SlidersHorizontal, Plus } from 'lucide-react';
+import { Card, CardContent } from '@/components/ui/card';
+import { Search, SlidersHorizontal, Plus, ArrowRight } from 'lucide-react';
 import { Checkbox } from '@/components/ui/checkbox';
 import ProductEditorDialog from '../components/admin/ProductEditorDialog';
 import { Label } from '@/components/ui/label';
@@ -53,6 +56,12 @@ export default function Category() {
     const matchesCategory = selectedCategory === 'all' || product.category_ids?.includes(selectedCategory);
     return matchesSearch && matchesCategory;
   });
+  
+  // Determine view mode
+  const showCategoryGrid = selectedCategory === 'all' && searchTerm === '';
+
+  // Get current category name
+  const currentCategoryName = categories.find(c => c.id === selectedCategory)?.name;
 
   if (isLoadingProducts || isLoadingCategories) {
     return (
@@ -108,23 +117,64 @@ export default function Category() {
         </div>
 
         <div className="flex flex-col gap-8">
-          {/* Product Grid */}
-          <div className="w-full">
-            {filteredProducts.length === 0 ? (
-              <div className="text-center py-20 bg-white rounded-lg border border-slate-200">
-                <p className="text-lg text-slate-500">לא נמצאו מוצרים התואמים את החיפוש שלך.</p>
-                <Button variant="link" onClick={() => { setSearchTerm(''); setSelectedCategory('all'); }}>
-                  נקה סינון
+          
+          {selectedCategory !== 'all' && (
+             <div className="flex items-center gap-2 mb-2">
+                <Button 
+                  variant="ghost" 
+                  className="gap-1 pl-0 hover:bg-transparent hover:text-primary"
+                  onClick={() => setSelectedCategory('all')}
+                >
+                  <ArrowRight className="w-4 h-4" />
+                  חזרה לקטגוריות
                 </Button>
-              </div>
-            ) : (
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
-                {filteredProducts.map(product => (
-                  <ProductCard key={product.id} product={product} />
-                ))}
-              </div>
-            )}
-          </div>
+                <Separator orientation="vertical" className="h-4" />
+                <span className="font-medium text-slate-900">{currentCategoryName}</span>
+             </div>
+          )}
+
+          {/* Category Grid View */}
+          {showCategoryGrid ? (
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+              {categories.map((category) => (
+                <Card 
+                  key={category.id} 
+                  className="h-full hover:shadow-lg transition-all cursor-pointer border-slate-200 rounded-lg group"
+                  onClick={() => setSelectedCategory(category.id)}
+                >
+                  <CardContent className="p-6 flex flex-col items-center justify-center text-center h-full min-h-[160px] gap-4">
+                    <div className="w-16 h-16 bg-slate-50 rounded-full flex items-center justify-center text-slate-700 font-bold text-2xl group-hover:bg-primary group-hover:text-white transition-colors duration-300">
+                      {category.name.charAt(0)}
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-lg text-slate-900 group-hover:text-primary transition-colors">{category.name}</h3>
+                      <p className="text-sm text-slate-500 mt-1">
+                        {products.filter(p => p.category_ids?.includes(category.id)).length} מוצרים
+                      </p>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          ) : (
+            /* Product Grid View */
+            <div className="w-full">
+              {filteredProducts.length === 0 ? (
+                <div className="text-center py-20 bg-white rounded-lg border border-slate-200">
+                  <p className="text-lg text-slate-500">לא נמצאו מוצרים התואמים את החיפוש שלך.</p>
+                  <Button variant="link" onClick={() => { setSearchTerm(''); setSelectedCategory('all'); }}>
+                    נקה סינון
+                  </Button>
+                </div>
+              ) : (
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+                  {filteredProducts.map(product => (
+                    <ProductCard key={product.id} product={product} />
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
         </div>
       </div>
     </div>

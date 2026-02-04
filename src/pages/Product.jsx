@@ -339,19 +339,21 @@ export default function Product() {
       </div>
 
       <Dialog open={!!lightboxImage} onOpenChange={() => setLightboxImage(null)}>
-        <DialogContent className="max-w-screen w-screen h-screen p-0 bg-black/95 border-none shadow-none duration-200">
-          <div className="relative w-full h-full flex items-center justify-center p-4">
-            <button 
-                onClick={() => setLightboxImage(null)}
-                className="absolute top-4 right-4 z-50 p-2 bg-white/10 hover:bg-white/20 rounded-full text-white transition-colors"
-            >
-                <X className="w-8 h-8" />
-            </button>
+        <DialogContent className="max-w-screen w-screen h-screen p-0 bg-black/95 border-none shadow-none duration-200 flex items-center justify-center overflow-hidden">
+          <button 
+              onClick={() => setLightboxImage(null)}
+              className="absolute top-4 right-4 z-[60] p-2 bg-black/50 hover:bg-black/70 rounded-full text-white transition-colors backdrop-blur-sm"
+              aria-label="Close lightbox"
+          >
+              <X className="w-8 h-8" />
+          </button>
+          <div className="relative w-full h-full flex items-center justify-center p-4 md:p-12">
             {lightboxImage && (
                 <img 
                     src={lightboxImage} 
                     alt="Preview" 
-                    className="w-full h-full object-contain"
+                    className="max-w-full max-h-full object-contain select-none"
+                    style={{ maxHeight: '90vh', maxWidth: '90vw' }}
                 />
             )}
           </div>
