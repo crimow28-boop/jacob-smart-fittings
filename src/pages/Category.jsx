@@ -58,7 +58,7 @@ export default function Category() {
   // Fetch Categories
   const { data: categories, isLoading: isLoadingCategories } = useQuery({
     queryKey: ['categories'],
-    queryFn: async () => await base44.entities.Category.list({ sort: { order: 1 } }),
+    queryFn: async () => await base44.entities.Category.list('order'),
     initialData: []
   });
 

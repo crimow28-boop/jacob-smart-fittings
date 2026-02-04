@@ -15,7 +15,7 @@ export default function CategoryManagerDialog({ open, onOpenChange }) {
 
   const { data: categories, isLoading } = useQuery({
     queryKey: ['categories-manager'],
-    queryFn: async () => await base44.entities.Category.list({ sort: { order: 1 } }),
+    queryFn: async () => await base44.entities.Category.list('order'),
     enabled: open,
     initialData: []
   });

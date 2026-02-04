@@ -31,7 +31,7 @@ export default function ProductEditorDialog({ open, onOpenChange, product }) {
 
   const { data: categories } = useQuery({
     queryKey: ['categories-select'],
-    queryFn: async () => await base44.entities.Category.list({ sort: { order: 1 } }),
+    queryFn: async () => await base44.entities.Category.list('order'),
     initialData: [],
     enabled: open
   });
