@@ -38,13 +38,19 @@ export default function CategoryManagerDialog({ open, onOpenChange }) {
   });
 
   const deleteMutation = useMutation({
-    mutationFn: async (id) => await base44.entities.Category.delete(id),
+    mutationFn: async (id) => {
+      console.log('Deleting category with ID:', id);
+      return await base44.entities.Category.delete(id);
+    },
     onSuccess: () => {
       queryClient.invalidateQueries(['categories']);
       queryClient.invalidateQueries(['categories-manager']);
       toast.success('קטגוריה נמחקה');
     },
-    onError: () => toast.error('שגיאה במחיקת קטגוריה')
+    onError: (error) => {
+      console.error('Failed to delete category:', error);
+      toast.error(`שגיאה במחיקת קטגוריה: ${error?.message || 'שגיאה לא ידועה'}`);
+    }
   });
 
   const updateOrderMutation = useMutation({
@@ -97,9 +103,11 @@ export default function CategoryManagerDialog({ open, onOpenChange }) {
                    onChange={(e) => updateOrderMutation.mutate({ id: category.id, order: Number(e.target.value) })}
                  />
                  <Button 
+                   type="button"
                    variant="ghost" 
                    size="icon" 
                    className="text-red-500 hover:text-red-700 hover:bg-red-50"
+                   disabled={deleteMutation.isPending}
                    onClick={() => {
                      if (window.confirm('האם אתה בטוח שברצונך למחוק קטגוריה זו?')) {
                        deleteMutation.mutate(category.id);
