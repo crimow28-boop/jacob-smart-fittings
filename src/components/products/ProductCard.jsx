@@ -8,12 +8,24 @@ import { ShoppingCart, Eye } from 'lucide-react';
 import { useCart } from '../cart/CartContext';
 import EditableProduct from '../admin/EditableProduct';
 
-export default function ProductCard({ product }) {
+export default function ProductCard({ product, onClick }) {
   const { addToCart } = useCart();
+  
+  // If it's a category or has a custom click handler
+  const handleClick = (e) => {
+    if (onClick) {
+      e.preventDefault();
+      onClick(product);
+    }
+  };
+
+  const productUrl = createPageUrl('Product') + `?id=${product.id}`;
+  const LinkComponent = onClick ? 'div' : Link;
+  const linkProps = onClick ? { onClick: handleClick, className: "cursor-pointer" } : { to: productUrl };
 
   return (
     <EditableProduct product={product} className="h-full">
-      <Card className="h-full flex flex-col group overflow-hidden transition-all hover:shadow-lg border-slate-200 rounded-none">
+      <Card className="h-full flex flex-col group overflow-hidden transition-all hover:shadow-lg border-slate-200 rounded-none relative">
         <div className="relative aspect-square overflow-hidden bg-white p-4">
           {product.images?.[0] ? (
             <img 
@@ -23,21 +35,28 @@ export default function ProductCard({ product }) {
             />
           ) : (
             <div className="w-full h-full bg-slate-100 flex items-center justify-center text-slate-300">
-              No Image
+              {product.isCategory ? product.name.charAt(0) : 'No Image'}
             </div>
           )}
           
           {product.is_new && (
             <Badge className="absolute top-2 right-2 bg-green-500 rounded-none">חדש</Badge>
           )}
-          <Link to={createPageUrl('Product') + `?id=${product.id}`} className="absolute inset-0" />
+          
+          {/* Main Click Area */}
+          {onClick ? (
+            <div 
+              className="absolute inset-0 cursor-pointer z-10" 
+              onClick={handleClick}
+            />
+          ) : (
+            <Link to={productUrl} className="absolute inset-0 z-10" />
+          )}
         </div>
         
-        <CardContent className="flex-1 p-4">
+        <CardContent className="flex-1 p-4 relative z-20 pointer-events-none">
           <h3 className="font-medium text-lg line-clamp-2 mb-2 group-hover:text-primary transition-colors">
-            <Link to={createPageUrl('Product') + `?id=${product.id}`}>
-              {product.name}
-            </Link>
+            {product.name}
           </h3>
           {product.features && product.features.length > 0 ? (
             <div className="space-y-0">

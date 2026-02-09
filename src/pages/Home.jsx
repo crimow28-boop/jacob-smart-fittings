@@ -38,33 +38,19 @@ export default function Home() {
         />
       </div>
 
-      <CategoryGrid 
-        onCategorySelect={setSelectedCategory} 
-        selectedCategory={selectedCategory} 
-      />
-
       <AnimatePresence mode="wait">
-        {selectedCategory ? (
-          <motion.div
-            key="category-products"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3 }}
-          >
-            <CategoryProducts categoryId={selectedCategory} />
-          </motion.div>
-        ) : (
-          <motion.div
-            key="featured-products"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3 }}
-          >
-            <FeaturedProducts />
-          </motion.div>
-        )}
+        <motion.div
+          key={selectedCategory || 'root'}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
+          transition={{ duration: 0.3 }}
+        >
+          <FeaturedProducts 
+            selectedCategory={selectedCategory}
+            onCategorySelect={setSelectedCategory}
+          />
+        </motion.div>
       </AnimatePresence>
 
       <PartnerLogos />
