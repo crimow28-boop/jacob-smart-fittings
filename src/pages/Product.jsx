@@ -198,11 +198,11 @@ export default function Product() {
           {/* Product Info */}
           <div className="min-w-0">
             <div className="mb-6">
-              {!product.in_stock && (
+              {/* {!product.in_stock && (
                 <Badge variant="secondary" className="mb-3 bg-red-100 text-red-800">
                   אזל מהמלאי
                 </Badge>
-              )}
+              )} */}
               <h1 className="text-2xl lg:text-4xl font-bold text-slate-800 mb-4">
                 {product.name}
               </h1>
@@ -274,7 +274,7 @@ export default function Product() {
                     variant="ghost"
                     size="icon"
                     onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                    disabled={!product.in_stock}
+                    
                   >
                     <Minus className="w-4 h-4" />
                   </Button>
@@ -283,7 +283,7 @@ export default function Product() {
                     variant="ghost"
                     size="icon"
                     onClick={() => setQuantity(quantity + 1)}
-                    disabled={!product.in_stock}
+                    
                   >
                     <Plus className="w-4 h-4" />
                   </Button>
@@ -294,7 +294,7 @@ export default function Product() {
                 <Button
                   className="flex-1 bg-amber-600 hover:bg-amber-700 text-white rounded-none"
                   onClick={handleAddToCart}
-                  disabled={!product.in_stock}
+                  
                 >
                   <Plus className="w-4 h-4 ml-2" />
                   הוסף לבקשה
