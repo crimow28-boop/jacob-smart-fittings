@@ -75,9 +75,9 @@ export default function ProductCard({ product, onClick }) {
         
         <CardFooter className="p-4 pt-0 flex items-center justify-between">
           <div></div>
-          {!product.in_stock && (
+          {/* {!product.in_stock && (
             <span className="text-xs text-red-500 font-medium">אזל מהמלאי</span>
-          )}
+          )} */}
         </CardFooter>
       </Card>
   );
