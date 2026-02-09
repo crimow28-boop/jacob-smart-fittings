@@ -92,11 +92,18 @@ export default function ProductEditorDialog({ open, onOpenChange, product }) {
 
   const updateMutation = useMutation({
     mutationFn: async (data) => {
+      console.log('Updating product with ID:', product.id);
       const formattedData = {
         ...data,
         price: isNaN(Number(data.price)) ? 0 : Number(data.price),
         order: isNaN(Number(data.order)) ? 0 : Number(data.order || 0),
       };
+      // Remove fields that should not be updated or might cause issues
+      delete formattedData.id;
+      delete formattedData.created_date;
+      delete formattedData.updated_date;
+      delete formattedData.created_by;
+      
       return await base44.entities.Product.update(product.id, formattedData);
     },
     onSuccess: () => {
