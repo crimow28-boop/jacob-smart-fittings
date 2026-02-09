@@ -84,8 +84,9 @@ export default function ProductEditorDialog({ open, onOpenChange, product }) {
       toast.success('המוצר נוצר בהצלחה');
       onOpenChange(false);
     },
-    onError: () => {
-      toast.error('שגיאה ביצירת המוצר');
+    onError: (error) => {
+      console.error('Create product error:', error);
+      toast.error(`שגיאה ביצירת המוצר: ${error.message || 'שגיאה לא ידועה'}`);
     }
   });
 
@@ -104,8 +105,9 @@ export default function ProductEditorDialog({ open, onOpenChange, product }) {
       toast.success('המוצר עודכן בהצלחה');
       onOpenChange(false);
     },
-    onError: () => {
-      toast.error('שגיאה בעדכון המוצר');
+    onError: (error) => {
+      console.error('Update product error:', error);
+      toast.error(`שגיאה בעדכון המוצר: ${error.message || 'שגיאה לא ידועה'}`);
     }
   });
 
