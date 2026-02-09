@@ -43,7 +43,7 @@ export default function Header() {
   const NavLinks = () => (
     <>
       <Link to={createPageUrl('Home')} className="text-sm font-medium hover:text-primary transition-colors">בית</Link>
-      <Link to={createPageUrl('Category')} className="text-sm font-medium hover:text-primary transition-colors">קטלוג</Link>
+      <Link to={createPageUrl('Category')} className="text-sm font-medium hover:text-primary transition-colors">מוצרים</Link>
       <Link to={createPageUrl('About')} className="text-sm font-medium hover:text-primary transition-colors">אודות</Link>
       <Link to={createPageUrl('Contact')} className="text-sm font-medium hover:text-primary transition-colors">צור קשר</Link>
     </>
@@ -71,7 +71,7 @@ export default function Header() {
                 </div>
                 <nav className="flex flex-col gap-8 text-right pr-4">
                   <Link to={createPageUrl('Home')} onClick={() => setIsSheetOpen(false)} className="text-xl font-medium hover:text-primary transition-colors">בית</Link>
-                  <Link to={createPageUrl('Category')} onClick={() => setIsSheetOpen(false)} className="text-xl font-medium hover:text-primary transition-colors">קטלוג</Link>
+                  <Link to={createPageUrl('Category')} onClick={() => setIsSheetOpen(false)} className="text-xl font-medium hover:text-primary transition-colors">מוצרים</Link>
                   <Link to={createPageUrl('About')} onClick={() => setIsSheetOpen(false)} className="text-xl font-medium hover:text-primary transition-colors">אודות</Link>
                   <Link to={createPageUrl('Contact')} onClick={() => setIsSheetOpen(false)} className="text-xl font-medium hover:text-primary transition-colors">צור קשר</Link>
                 </nav>

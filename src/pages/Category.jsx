@@ -24,18 +24,12 @@ export default function Category() {
   
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState(initialCategoryId || 'all');
-  const [viewMode, setViewMode] = useState(initialCategoryId ? 'list' : 'grid');
+  // Removed viewMode state as we want to always show products
   const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
   const [isCategoryManagerOpen, setIsCategoryManagerOpen] = useState(false);
 
-  useEffect(() => {
-    if (searchTerm) {
-      setViewMode('list');
-    } else if (selectedCategory === 'all' && !initialCategoryId) {
-      // If we cleared search and are in 'all' category, go back to grid
-      setViewMode('grid');
-    }
-  }, [searchTerm]);
+  // If a category is selected via URL, we stick to it, otherwise 'all'
+  // We don't need effects to switch viewMode anymore
 
   const handleSearchChange = (e) => {
     const value = e.target.value;
@@ -65,8 +59,8 @@ export default function Category() {
   // Filter Logic
   const filteredProducts = products.filter(product => {
     const matchesSearch = product.name.toLowerCase().includes(searchTerm.toLowerCase());
-    // In non-edit mode, we ignore category selection and show all products
-    const matchesCategory = (!isEditMode) || selectedCategory === 'all' || product.category_ids?.includes(selectedCategory);
+    // Show all products by default unless a specific category is selected
+    const matchesCategory = selectedCategory === 'all' || product.category_ids?.includes(selectedCategory);
     return matchesSearch && matchesCategory;
   });
   
@@ -138,105 +132,84 @@ export default function Category() {
 
         <div className="flex flex-col gap-8">
           
-          {isEditMode && viewMode === 'list' && (
-             <div className="flex items-center gap-2 mb-2">
+          {/* Categories Section - Only visible in Edit Mode */}
+          {isEditMode && (
+            <div className="mb-4">
+              <h2 className="text-xl font-semibold mb-4 text-slate-700">סינון לפי קטגוריות (מצב עריכה)</h2>
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                 {/* "All" Category Button */}
+                 <div 
+                    onClick={() => setSelectedCategory('all')}
+                    className={`cursor-pointer p-4 rounded-lg border text-center transition-all ${
+                        selectedCategory === 'all' 
+                        ? 'bg-primary text-white border-primary shadow-md' 
+                        : 'bg-white text-slate-600 border-slate-200 hover:border-primary hover:text-primary'
+                    }`}
+                 >
+                    <span className="font-medium">הכל</span>
+                 </div>
+                 
+                 {categories.map((category) => (
+                    <div 
+                        key={category.id} 
+                        onClick={() => setSelectedCategory(selectedCategory === category.id ? 'all' : category.id)}
+                        className={`cursor-pointer p-4 rounded-lg border text-center transition-all flex flex-col items-center gap-2 ${
+                            selectedCategory === category.id 
+                            ? 'bg-primary text-white border-primary shadow-md' 
+                            : 'bg-white text-slate-600 border-slate-200 hover:border-primary hover:text-primary'
+                        }`}
+                    >
+                        {category.image && (
+                          <div className="w-8 h-8 rounded-full overflow-hidden bg-white/20">
+                             <img src={category.image} alt="" className="w-full h-full object-cover" />
+                          </div>
+                        )}
+                        <span className="font-medium text-sm truncate w-full">{category.name}</span>
+                    </div>
+                 ))}
+              </div>
+              <Separator className="mt-8" />
+            </div>
+          )}
+          
+          {/* Breadcrumbs / Filter Status */}
+          {selectedCategory !== 'all' && (
+             <div className="flex items-center gap-2">
                 <Button 
                   variant="ghost" 
                   className="gap-1 pl-0 hover:bg-transparent hover:text-primary"
-                  onClick={() => {
-                    setSelectedCategory('all');
-                    setViewMode('grid');
-                    setSearchTerm('');
-                  }}
+                  onClick={() => setSelectedCategory('all')}
                 >
                   <ArrowRight className="w-4 h-4" />
-                  חזרה לקטגוריות
+                  הצג את כל המוצרים
                 </Button>
-                {selectedCategory !== 'all' && (
-                  <>
-                    <Separator orientation="vertical" className="h-4" />
-                    <span className="font-medium text-slate-900">{currentCategoryName}</span>
-                  </>
-                )}
-                {selectedCategory === 'all' && searchTerm === '' && (
-                  <>
-                    <Separator orientation="vertical" className="h-4" />
-                    <span className="font-medium text-slate-900">כל המוצרים</span>
-                  </>
-                )}
+                <Separator orientation="vertical" className="h-4" />
+                <span className="font-medium text-slate-900">{currentCategoryName}</span>
              </div>
           )}
 
-          {/* Category Grid View */}
-          {isEditMode && viewMode === 'grid' ? (
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
-              {/* All Products Card */}
-              <Card 
-                className="h-full hover:shadow-lg transition-all cursor-pointer border-slate-200 rounded-lg group"
-                onClick={() => {
-                  setSelectedCategory('all');
-                  setViewMode('list');
-                }}
-              >
-                <CardContent className="p-6 flex flex-col items-center justify-center text-center h-full min-h-[160px] gap-4">
-                  <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center text-primary font-bold text-2xl group-hover:bg-primary group-hover:text-white transition-colors duration-300">
-                    <Search className="w-8 h-8" />
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-lg text-slate-900 group-hover:text-primary transition-colors">כל המוצרים</h3>
-                    <p className="text-sm text-slate-500 mt-1">
-                      {products.length} מוצרים
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
-
-              {categories.map((category) => (
-                <Card 
-                  key={category.id} 
-                  className="h-full hover:shadow-lg transition-all cursor-pointer border-slate-200 rounded-lg group"
-                  onClick={() => {
-                    setSelectedCategory(category.id);
-                    setViewMode('list');
-                  }}
-                >
-                  <CardContent className="p-6 flex flex-col items-center justify-center text-center h-full min-h-[160px] gap-4">
-                    <div className="w-16 h-16 bg-slate-50 rounded-full flex items-center justify-center text-slate-700 font-bold text-2xl group-hover:bg-primary group-hover:text-white transition-colors duration-300">
-                      {category.name.charAt(0)}
-                    </div>
-                    <div>
-                      <h3 className="font-bold text-lg text-slate-900 group-hover:text-primary transition-colors">{category.name}</h3>
-                      <p className="text-sm text-slate-500 mt-1">
-                        {products.filter(p => p.category_ids?.includes(category.id)).length} מוצרים
-                      </p>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          ) : (
-            /* Product Grid View */
-            <div className="w-full">
-              {filteredProducts.length === 0 ? (
-                <div className="text-center py-20 bg-white rounded-lg border border-slate-200">
-                  <p className="text-lg text-slate-500">לא נמצאו מוצרים התואמים את החיפוש שלך.</p>
-                  <Button variant="link" onClick={() => { 
-                    setSearchTerm(''); 
-                    setSelectedCategory('all'); 
-                    if (!searchTerm) setViewMode('grid'); // Go back to grid if we were just browsing empty category
-                  }}>
-                    נקה סינון
-                  </Button>
-                </div>
-              ) : (
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
-                  {filteredProducts.map(product => (
-                    <ProductCard key={product.id} product={product} />
-                  ))}
-                </div>
-              )}
-            </div>
-          )}
+          {/* Product Grid View - Always Visible */}
+          <div className="w-full">
+            {filteredProducts.length === 0 ? (
+              <div className="text-center py-20 bg-white rounded-lg border border-slate-200">
+                <p className="text-lg text-slate-500">לא נמצאו מוצרים.</p>
+                {(searchTerm || selectedCategory !== 'all') && (
+                    <Button variant="link" onClick={() => { 
+                      setSearchTerm(''); 
+                      setSelectedCategory('all'); 
+                    }}>
+                      נקה סינון
+                    </Button>
+                )}
+              </div>
+            ) : (
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+                {filteredProducts.map(product => (
+                  <ProductCard key={product.id} product={product} />
+                ))}
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>
