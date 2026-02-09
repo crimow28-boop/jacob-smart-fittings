@@ -166,12 +166,28 @@ export default function CategoryManagerDialog({ open, onOpenChange }) {
 
                   <div className="space-y-2">
                     <Label>תמונת קטגוריה</Label>
-                    <FileUploader 
-                      value={editForm.image ? [editForm.image] : []}
-                      onChange={(files) => setEditForm({...editForm, image: files[0] || ''})}
-                      maxFiles={1}
-                      acceptedTypes={{'image/*': ['.png', '.jpg', '.jpeg', '.webp']}}
-                    />
+                    <div className="flex flex-col gap-4">
+                      {editForm.image && (
+                        <div className="relative w-32 h-32 group border border-slate-200 rounded-lg overflow-hidden">
+                          <img 
+                            src={editForm.image} 
+                            alt="Preview" 
+                            className="w-full h-full object-cover" 
+                          />
+                          <button
+                            type="button"
+                            onClick={() => setEditForm({ ...editForm, image: '' })}
+                            className="absolute top-1 right-1 bg-red-500 text-white rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity"
+                          >
+                            <X className="w-4 h-4" />
+                          </button>
+                        </div>
+                      )}
+                      <FileUploader 
+                        onUpload={(url) => setEditForm({...editForm, image: url})}
+                        label={editForm.image ? "החלף תמונה" : "העלה תמונה"}
+                      />
+                    </div>
                   </div>
 
                   <div className="flex justify-end gap-2 pt-2">
