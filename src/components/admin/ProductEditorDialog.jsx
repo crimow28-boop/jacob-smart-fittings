@@ -114,7 +114,11 @@ export default function ProductEditorDialog({ open, onOpenChange, product }) {
     },
     onError: (error) => {
       console.error('Update product error:', error);
-      toast.error(`שגיאה בעדכון המוצר: ${error.message || 'שגיאה לא ידועה'}`);
+      if (error.message?.includes('not found')) {
+        toast.error('המוצר לא נמצא במערכת (אולי נמחק?). נסה לרענן את הדף.');
+      } else {
+        toast.error(`שגיאה בעדכון המוצר: ${error.message || 'שגיאה לא ידועה'}`);
+      }
     }
   });
 

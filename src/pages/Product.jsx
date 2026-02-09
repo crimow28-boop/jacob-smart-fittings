@@ -33,7 +33,7 @@ const WHATSAPP_NUMBER = '972547391001';
 
 export default function Product() {
   const urlParams = new URLSearchParams(window.location.search);
-  const productId = urlParams.get('id');
+  const productId = urlParams.get('id')?.trim();
   const navigate = useNavigate();
 
   useEffect(() => {
