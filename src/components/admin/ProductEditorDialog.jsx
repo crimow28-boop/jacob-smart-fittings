@@ -73,8 +73,8 @@ export default function ProductEditorDialog({ open, onOpenChange, product }) {
     mutationFn: async (data) => {
       const formattedData = {
         ...data,
-        price: Number(data.price),
-        order: Number(data.order || 0),
+        price: isNaN(Number(data.price)) ? 0 : Number(data.price),
+        order: isNaN(Number(data.order)) ? 0 : Number(data.order || 0),
         slug: kebabCase(data.name) || `product-${Date.now()}`,
       };
       return await base44.entities.Product.create(formattedData);
@@ -94,8 +94,8 @@ export default function ProductEditorDialog({ open, onOpenChange, product }) {
     mutationFn: async (data) => {
       const formattedData = {
         ...data,
-        price: Number(data.price),
-        order: Number(data.order || 0),
+        price: isNaN(Number(data.price)) ? 0 : Number(data.price),
+        order: isNaN(Number(data.order)) ? 0 : Number(data.order || 0),
       };
       return await base44.entities.Product.update(product.id, formattedData);
     },
@@ -231,7 +231,7 @@ export default function ProductEditorDialog({ open, onOpenChange, product }) {
                <Label>תכונות/מאפיינים (כל שורה היא מאפיין נפרד)</Label>
                <Textarea 
                  value={formData.features.join('\n')} 
-                 onChange={(e) => handleChange('features', e.target.value.split('\n'))}
+                 onChange={(e) => handleChange('features', e.target.value.split('\n').filter(line => line.trim() !== ''))}
                  className="h-32 text-right"
                  placeholder="הכנס תכונות, כל אחת בשורה חדשה..."
                />
