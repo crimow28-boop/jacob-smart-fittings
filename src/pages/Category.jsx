@@ -65,7 +65,8 @@ export default function Category() {
   // Filter Logic
   const filteredProducts = products.filter(product => {
     const matchesSearch = product.name.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesCategory = selectedCategory === 'all' || product.category_ids?.includes(selectedCategory);
+    // In non-edit mode, we ignore category selection and show all products
+    const matchesCategory = (!isEditMode) || selectedCategory === 'all' || product.category_ids?.includes(selectedCategory);
     return matchesSearch && matchesCategory;
   });
   
@@ -107,7 +108,7 @@ export default function Category() {
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
           <div className="flex items-center gap-4">
-            <h1 className="text-3xl font-bold text-slate-900">קטלוג מוצרים</h1>
+            <h1 className="text-3xl font-bold text-slate-900">מוצרים</h1>
             {isEditMode && (
               <div className="flex gap-2">
                 <Button onClick={() => setIsCreateDialogOpen(true)} className="bg-primary hover:bg-primary-hover">
@@ -137,7 +138,7 @@ export default function Category() {
 
         <div className="flex flex-col gap-8">
           
-          {viewMode === 'list' && (
+          {isEditMode && viewMode === 'list' && (
              <div className="flex items-center gap-2 mb-2">
                 <Button 
                   variant="ghost" 
@@ -167,7 +168,7 @@ export default function Category() {
           )}
 
           {/* Category Grid View */}
-          {viewMode === 'grid' ? (
+          {isEditMode && viewMode === 'grid' ? (
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
               {/* All Products Card */}
               <Card 
