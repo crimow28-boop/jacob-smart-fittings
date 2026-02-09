@@ -6,11 +6,12 @@ import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import { ArrowLeft } from 'lucide-react';
 
-export default function CategoryGrid() {
+export default function CategoryGrid(props) {
   const { data: categories, isLoading } = useQuery({
     queryKey: ['categories'],
     queryFn: async () => {
-      return await base44.entities.Category.list({ sort: { order: 1 } });
+      // Correct list usage based on previous context fixes
+      return await base44.entities.Category.list('order');
     },
     initialData: []
   });
@@ -18,32 +19,73 @@ export default function CategoryGrid() {
   if (isLoading || categories.length === 0) return null;
 
   return (
-    <section className="py-16 bg-slate-50">
+    <section className="py-12 bg-slate-50">
       <div className="container px-4 md:px-6">
         <div className="flex justify-between items-end mb-8">
           <div>
-            <h2 className="text-3xl font-bold tracking-tight text-slate-900">קטגוריות מובילות</h2>
-            <p className="text-slate-500 mt-2">מצא את מה שאתה מחפש לפי קטגוריה</p>
+            <h2 className="text-3xl font-bold tracking-tight text-slate-900">קטגוריות מוצרים</h2>
+            <p className="text-slate-500 mt-2">בחר קטגוריה לצפייה במוצרים</p>
           </div>
-          <Link to={createPageUrl('Category')} className="text-primary hover:text-primary-hover font-medium flex items-center gap-1">
-            לכל הקטגוריות
-            <ArrowLeft className="w-4 h-4" />
-          </Link>
+          {/* Only show "All Categories" link if we are not in "interactive" mode or if specifically requested */}
+          {!props.onCategorySelect && (
+            <Link to={createPageUrl('Category')} className="text-primary hover:text-primary-hover font-medium flex items-center gap-1">
+              לכל הקטגוריות
+              <ArrowLeft className="w-4 h-4" />
+            </Link>
+          )}
         </div>
         
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
-          {categories.slice(0, 6).map((category) => (
-            <Link key={category.id} to={createPageUrl('Category') + `?category=${category.id}`}>
-              <Card className="h-full hover:shadow-md transition-shadow cursor-pointer border-slate-200 rounded-none">
-                <CardContent className="p-6 flex flex-col items-center justify-center text-center h-full min-h-[140px]">
-                  <div className="w-12 h-12 bg-primary/10 rounded-none flex items-center justify-center mb-4 text-primary font-bold text-lg">
-                    {category.name.charAt(0)}
-                  </div>
-                  <span className="font-medium text-slate-900">{category.name}</span>
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          {categories.map((category) => {
+            const isSelected = props.selectedCategory === category.id;
+            
+            const content = (
+              <Card className={`h-full hover:shadow-lg transition-all cursor-pointer border-slate-200 overflow-hidden group ${isSelected ? 'ring-2 ring-primary border-primary' : ''}`}>
+                <div className="aspect-[4/3] w-full overflow-hidden bg-white relative">
+                  {category.image ? (
+                    <img 
+                      src={category.image} 
+                      alt={category.name} 
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center bg-slate-100 text-slate-400">
+                      <span className="text-4xl font-light">{category.name.charAt(0)}</span>
+                    </div>
+                  )}
+                  {isSelected && (
+                    <div className="absolute inset-0 bg-primary/10 flex items-center justify-center backdrop-blur-[1px]">
+                      <span className="bg-primary text-white text-xs px-2 py-1 rounded-full">נבחר</span>
+                    </div>
+                  )}
+                </div>
+                <CardContent className="p-4 text-center">
+                  <h3 className={`font-bold text-lg mb-1 group-hover:text-primary transition-colors ${isSelected ? 'text-primary' : 'text-slate-900'}`}>
+                    {category.name}
+                  </h3>
+                  {category.description && (
+                    <p className="text-sm text-slate-500 line-clamp-2">
+                      {category.description}
+                    </p>
+                  )}
                 </CardContent>
               </Card>
-            </Link>
-          ))}
+            );
+
+            if (props.onCategorySelect) {
+              return (
+                <div key={category.id} onClick={() => props.onCategorySelect(isSelected ? null : category.id)}>
+                  {content}
+                </div>
+              );
+            }
+
+            return (
+              <Link key={category.id} to={createPageUrl('Category') + `?category=${category.id}`}>
+                {content}
+              </Link>
+            );
+          })}
         </div>
       </div>
     </section>
