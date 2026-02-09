@@ -23,8 +23,7 @@ export default function ProductCard({ product, onClick }) {
   const LinkComponent = onClick ? 'div' : Link;
   const linkProps = onClick ? { onClick: handleClick, className: "cursor-pointer" } : { to: productUrl };
 
-  return (
-    <EditableProduct product={product} className="h-full">
+  const CardContentComponent = (
       <Card className="h-full flex flex-col group overflow-hidden transition-all hover:shadow-lg border-slate-200 rounded-none relative">
         <div className="relative aspect-square overflow-hidden bg-white p-4">
           {product.images?.[0] ? (
@@ -81,6 +80,15 @@ export default function ProductCard({ product, onClick }) {
           )}
         </CardFooter>
       </Card>
+  );
+
+  if (product.isCategory) {
+    return CardContentComponent;
+  }
+
+  return (
+    <EditableProduct product={product} className="h-full">
+      {CardContentComponent}
     </EditableProduct>
   );
 }
