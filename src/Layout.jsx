@@ -9,6 +9,7 @@ import Footer from './components/layout/Footer';
 import WhatsAppButton from './components/layout/WhatsAppButton';
 import AdminToolbar from './components/admin/AdminToolbar';
 import AccessibilityMenu from './components/accessibility/AccessibilityMenu';
+import CookieConsent from './components/legal/CookieConsent';
 import { Toaster } from '@/components/ui/sonner';
 
 // Helper to convert hex to HSL string "H S% L%" for Shadcn
@@ -117,6 +118,7 @@ export default function Layout({ children }) {
            <WhatsAppButton />
            <AdminToolbar />
            <AccessibilityMenu />
+           <CookieConsent />
            <Footer />
            <Toaster />
         </div>

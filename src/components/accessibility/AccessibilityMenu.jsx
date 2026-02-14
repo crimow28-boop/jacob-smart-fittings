@@ -19,24 +19,29 @@ export default function AccessibilityMenu() {
   };
 
   return (
-    <div className="fixed top-24 left-0 z-40 hidden md:block">
+    <div className="fixed top-24 left-0 z-40">
         <DropdownMenu>
         <DropdownMenuTrigger asChild>
-            <Button variant="secondary" size="icon" className="rounded-l-none rounded-r-lg shadow-md bg-white border border-l-0 border-slate-200">
-            <Accessibility className="w-5 h-5 text-primary" />
+            <Button 
+              variant="secondary" 
+              size="icon" 
+              className="rounded-l-none rounded-r-lg shadow-md bg-white border border-l-0 border-slate-200 h-10 w-10 md:h-12 md:w-12"
+              aria-label="תפריט נגישות"
+            >
+            <Accessibility className="w-6 h-6 text-primary" />
             </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="start" className="w-56 ml-2">
-            <DropdownMenuItem onClick={toggleContrast}>
+            <DropdownMenuItem onClick={toggleContrast} className="cursor-pointer">
             {contrast ? 'ביטול ניגודיות' : 'ניגודיות גבוהה'}
             </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => changeFontSize(10)}>
+            <DropdownMenuItem onClick={() => changeFontSize(10)} className="cursor-pointer">
             הגדל טקסט (+)
             </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => changeFontSize(-10)}>
+            <DropdownMenuItem onClick={() => changeFontSize(-10)} className="cursor-pointer">
             הקטן טקסט (-)
             </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => {
+            <DropdownMenuItem className="cursor-pointer" onClick={() => {
                 setFontSize(100);
                 setContrast(false);
                 document.documentElement.style.fontSize = '100%';
