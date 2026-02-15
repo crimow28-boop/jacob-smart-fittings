@@ -65,7 +65,7 @@ export default function FeaturedProducts({ selectedCategory, onCategorySelect })
             <p className="text-slate-500 mt-2">
               {selectedCategory 
                 ? `${displayItems.length} מוצרים בקטגוריה`
-                : 'כל הפתרונות לבית ולנגר'
+                : 'כל פתרונות הפרזול שלנו'
               }
             </p>
           </div>
