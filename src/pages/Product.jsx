@@ -217,11 +217,17 @@ export default function Product() {
             </div>
 
             {/* Video Section */}
-            {product.video_url && (
-              <div className="mb-6">
-                <div className="aspect-video bg-slate-100 rounded-none overflow-hidden border border-slate-200">
-                  {(() => {
-                    let videoSrc = product.video_url;
+            {(() => {
+              const videos = product.video_urls?.length > 0 
+                ? product.video_urls 
+                : (product.video_url ? [product.video_url] : []);
+              
+              if (videos.length === 0) return null;
+
+              return (
+                <div className="mb-8 space-y-6">
+                  {videos.map((originalUrl, index) => {
+                    let videoSrc = originalUrl;
                     let isYoutube = videoSrc.includes('youtube') || videoSrc.includes('youtu.be');
                     let isVimeo = videoSrc.includes('vimeo');
                     
@@ -230,6 +236,7 @@ export default function Product() {
                       if (videoSrc.includes('youtu.be/')) videoId = videoSrc.split('youtu.be/')[1].split(/[?#]/)[0];
                       else if (videoSrc.includes('v=')) videoId = videoSrc.split('v=')[1].split(/[&?#]/)[0];
                       else if (videoSrc.includes('/embed/')) videoId = videoSrc.split('/embed/')[1].split(/[?#]/)[0];
+                      else if (videoSrc.includes('shorts/')) videoId = videoSrc.split('shorts/')[1].split(/[?#]/)[0];
                       
                       if (videoId) {
                         videoSrc = `https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1`;
@@ -241,29 +248,29 @@ export default function Product() {
                          }
                     }
 
-                    if (isYoutube || isVimeo) {
-                         return (
+                    return (
+                      <div key={index} className="aspect-video bg-slate-100 rounded-lg overflow-hidden border border-slate-200 shadow-sm">
+                        {(isYoutube || isVimeo) ? (
                             <iframe
                                 src={videoSrc}
-                                title={`${product.name} video`}
+                                title={`${product.name} video ${index + 1}`}
                                 className="w-full h-full"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                                 allowFullScreen
                             />
-                         );
-                    }
-                    
-                    return (
-                        <video 
-                          src={product.video_url} 
-                          controls
-                          className="w-full h-full object-contain bg-black"
-                        />
+                        ) : (
+                            <video 
+                              src={originalUrl} 
+                              controls
+                              className="w-full h-full object-contain bg-black"
+                            />
+                        )}
+                      </div>
                     );
-                  })()}
+                  })}
                 </div>
-              </div>
-            )}
+              );
+            })()}
 
             {/* Quantity & Add to Cart */}
             <div className="space-y-4">

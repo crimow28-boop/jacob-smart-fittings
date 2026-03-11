@@ -24,6 +24,7 @@ export default function ProductEditorDialog({ open, onOpenChange, product }) {
     images: [],
     specification_urls: [],
     video_url: '',
+    video_urls: [],
     in_stock: true,
     features: [],
     category_ids: [],
@@ -47,6 +48,7 @@ export default function ProductEditorDialog({ open, onOpenChange, product }) {
         images: product.images || [],
         specification_urls: product.specification_urls || [],
         video_url: product.video_url || '',
+        video_urls: product.video_urls || (product.video_url ? [product.video_url] : []),
         in_stock: product.in_stock ?? true,
         features: product.features || [],
         category_ids: product.category_ids || [],
@@ -62,6 +64,7 @@ export default function ProductEditorDialog({ open, onOpenChange, product }) {
         images: [],
         specification_urls: [],
         video_url: '',
+        video_urls: [],
         in_stock: true,
         features: [],
         category_ids: [],
@@ -154,6 +157,22 @@ export default function ProductEditorDialog({ open, onOpenChange, product }) {
     setFormData(prev => ({
       ...prev,
       specification_urls: prev.specification_urls.filter((_, i) => i !== index)
+    }));
+  };
+
+  const handleVideoAdd = () => {
+    if (!formData.video_url) return;
+    setFormData(prev => ({
+      ...prev,
+      video_urls: [...prev.video_urls, prev.video_url],
+      video_url: '' // Clear input
+    }));
+  };
+
+  const removeVideo = (index) => {
+    setFormData(prev => ({
+      ...prev,
+      video_urls: prev.video_urls.filter((_, i) => i !== index)
     }));
   };
 
@@ -304,12 +323,36 @@ export default function ProductEditorDialog({ open, onOpenChange, product }) {
 
             {/* Video & Stock */}
             <div className="space-y-2">
-               <Label>וידאו URL</Label>
-               <Input 
-                 value={formData.video_url} 
-                 onChange={(e) => handleChange('video_url', e.target.value)}
-                 className="text-right"
-               />
+               <Label>וידאו URL (YouTube/Vimeo)</Label>
+               <div className="space-y-2 mb-4">
+                 {formData.video_urls.map((url, index) => (
+                   <div key={index} className="flex items-center justify-between p-2 bg-slate-50 rounded border border-slate-200">
+                     <span className="text-sm truncate max-w-[300px] dir-ltr text-left">{url}</span>
+                     <button 
+                       type="button"
+                       onClick={() => removeVideo(index)}
+                       className="text-red-500 hover:text-red-700"
+                     >
+                       <X className="w-4 h-4" />
+                     </button>
+                   </div>
+                 ))}
+                 <div className="flex gap-2">
+                    <Button type="button" onClick={handleVideoAdd} variant="secondary">הוסף</Button>
+                    <Input 
+                      value={formData.video_url} 
+                      onChange={(e) => handleChange('video_url', e.target.value)}
+                      className="text-left dir-ltr"
+                      placeholder="https://www.youtube.com/watch?v=..."
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter') {
+                          e.preventDefault();
+                          handleVideoAdd();
+                        }
+                      }}
+                    />
+                 </div>
+               </div>
             </div>
 
             <div className="flex items-center space-x-2 space-x-reverse">
